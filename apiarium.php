@@ -28,7 +28,11 @@ if ( ! defined( 'APIARIUM_REGISTRY' ) ) {
 require __DIR__ . '/vendor/autoload.php';
 
 $registry = new \Honeycomb\Services\Register();
-
 $registry->register(
-    require APIARIUM_REGISTRY . '/shortcode-registry.php'
+    require APIARIUM_REGISTRY . '/wordpress-registry.php'
+);
+
+$parser_registry = new \Apiarium\Services\Parser_Register();
+$parser_registry->register(
+    require APIARIUM_REGISTRY . '/parser-registry.php'
 );

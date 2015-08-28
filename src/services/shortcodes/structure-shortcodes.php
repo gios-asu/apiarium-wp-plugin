@@ -23,15 +23,33 @@ class Structure_Shortcodes extends Hook {
   }
 
   public function display_row( $atts, $content = '' ) {
+    $atts = shortcode_atts(
+        array(
+          'size' => 1
+        ),
+        $atts,
+        'apiarium'
+    );
+
+    $flex_size  = $atts['size'];
     $inner_html = do_shortcode( $content );
 
-    return "<div class='apiarium__row'>{$inner_html}</div>";
+    return "<div class='apiarium__row' style='flex: {$flex_size}'>{$inner_html}</div>";
   }
 
   public function display_column( $atts, $content = '' ) {
+    $atts = shortcode_atts(
+        array(
+          'size' => 1
+        ),
+        $atts,
+        'apiarium'
+    );
+
+    $flex_size  = $atts['size'];
     $inner_html = do_shortcode( $content );
 
-    return "<div class='apiarium__column'>{$inner_html}</div>";
+    return "<div class='apiarium__column' style='flex: {$flex_size}'>{$inner_html}</div>";
   }
 
   public function display_flex( $atts, $content = '' ) {

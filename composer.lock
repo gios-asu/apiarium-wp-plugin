@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gios-asu/honeycomb.git",
-                "reference": "da07f98e8a0da1c12326d376108344e8d44bd8d0"
+                "reference": "e017ae26eaae8382be9de39bb049093e59f0c85b"
             },
             "type": "library",
             "autoload": {
@@ -30,7 +30,7 @@
                 }
             ],
             "description": "A framework for WordPress plugins",
-            "time": "2015-08-28 00:23:57"
+            "time": "2015-08-28 16:16:12"
         },
         {
             "name": "gios-asu/nectary",
@@ -38,7 +38,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gios-asu/nectary.git",
-                "reference": "a7c98a125ef991de463509d7bcb0d137d0376983"
+                "reference": "9ee5b55718ea2f954946f3bfd904906410c113f9"
             },
             "require": {
                 "xamin/handlebars.php": "dev-master"
@@ -67,7 +67,7 @@
                 }
             ],
             "description": "A simple PHP framework that is not tied to a web interface",
-            "time": "2015-08-27 23:35:23"
+            "time": "2015-08-28 17:02:05"
         },
         {
             "name": "xamin/handlebars.php",

@@ -1,0 +1,108 @@
+<?php
+
+namespace Apiarium\Factories;
+
+use Nectary\Factories\Html_Carousel_Factory;
+use Nectary\Factories\Html_Slide_Factory;
+use Apiarium\Services\Parser_Register;
+use Apiarium\Models\Feed_Item;
+
+class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
+  private $feed_items;
+  private $limit;
+  private $slide_factory_class;
+  private $include_heading;
+  private $include_caption;
+  private $include_image;
+
+  public function __construct( $feed_items ) {
+    $this->feed_items = $feed_items;
+
+    $this->limit               = 15;
+    $this->slide_factory_class = Html_Slide_Factory::class;
+    $this->include_heading     = false;
+    $this->include_caption     = false;
+    $this->include_image       = false;
+  }
+
+  public function set_slide_factory( $slide_factory_class ) {
+    $this->slide_factory_class = $slide_factory_class;
+  }
+
+  public function set_include_heading( $include = true ) {
+    $this->include_heading = $include;
+  }
+
+  public function set_include_caption( $include = true ) {
+    $this->include_caption = $include;
+  }
+
+  public function set_include_image( $include = true ) {
+    $this->include_image = $include;
+  }
+
+  public function set_limit( $limit ) {
+    $this->limit = $limit;
+  }
+
+  public function build() {
+    $slides   = $this->build_slides();
+    $carousel = $this->build_carousel( $slides );
+
+    return $carousel;
+  }
+
+  private function build_slides() {
+    $slides = [];
+
+    $is_active = true;
+
+    foreach( $this->feed_items as $feed_item ) {
+      $slides[] = $this->build_slide( $feed_item, $is_active );
+
+      if ( $is_active ) {
+        $is_active = false;
+      }
+    }
+
+    return $slides;
+  }
+
+  private function build_slide( Feed_Item $feed_item, $is_active = false ) {
+    $slide = new $this->slide_factory_class();
+
+    if ( $is_active ) {
+      $slide->is_active();  
+    }
+    
+    if ( $this->include_heading ) {
+      $slide->add_heading(
+          $feed_item->title
+      );
+    }
+    
+    if ( $this->include_caption ) {
+      $slide->add_text(
+          $feed_item->description
+      );
+    }
+
+    if ( $this->include_image ) {
+      $slide->add_image(
+          $feed_item->image
+      );  
+    }
+
+    return $slide->build();
+  }
+
+  private function build_carousel( $slides ) {
+    $carousel = new Html_Carousel_Factory();
+
+    foreach ( $slides as $slide ) {
+      $carousel->add_slide( $slide );
+    }
+
+    return $carousel->build();
+  }
+}
