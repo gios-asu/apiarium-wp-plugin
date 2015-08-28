@@ -4,7 +4,7 @@ namespace Apiarium\Services;
 
 use Honeycomb\Wordpress\Hook;
 use Honeycomb\Facades\Wordpress_Rss_Facade;
-use Apiarium\Factories\Rss_Carousel_Factory;
+use Apiarium\Factories\Apiarium_Carousel_Factory;
 use Apiarium\Factories\Overlay_Slide_Factory;
 use Apiarium\Factories\Newspaper_Slide_Factory;
 
@@ -38,9 +38,10 @@ class Slider_Shortcodes extends Hook {
     $feed_urls = explode( "\n", $content );
     $feed_urls = $this->clean_urls( $feed_urls );
 
-    $carousel_factory = new Rss_Carousel_Factory(
-        $feed_urls,
-        new Wordpress_Rss_Facade()
+    $feed_items = Parser_Register::parse( $feed_urls );
+
+    $carousel_factory = new Apiarium_Carousel_Factory(
+        $feed_items
     );
 
     $this->set_content_to_include( $carousel_factory, $atts['content'] );

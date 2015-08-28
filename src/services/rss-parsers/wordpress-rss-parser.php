@@ -2,13 +2,27 @@
 
 namespace Apiarium\Services\Rss_Parsers;
 
+use Apiarium\Models\Feed_Item;
+use Honeycomb\Facades\Wordpress_Rss_Facade;
+use Nectary\Models\Rss_Feed;
+
 class Wordpress_Rss_Parser {
   const PURL_RSS = 'http://purl.org/rss/1.0/modules/content/';
 
-  public function can_parse( $item ) {
-    if ( $item instanceof \SimplePie_Item ) {
-      if ( ! empty( $item->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
-        return true;  
+  private $rss_facade;
+
+  public function __construct( Wordpress_Rss_Facade $rss_facade ) {
+    $this->rss_facade = $rss_facade;
+  }
+
+  public function can_parse( $url ) {
+    if ( $feed = $this->get_feed( $url ) ) {
+      if ( $feed instanceof Rss_Feed ) {
+        if ( ! empty( $feed->get_items() ) ) {
+          if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
+            return true;  
+          }
+        }
       }
     }
 
@@ -17,16 +31,24 @@ class Wordpress_Rss_Parser {
 
   // TODO remove the "The post XYZ appeared first on ABC" text from
   // the description
-  public function parse( $item ) {
-    $title       = $item->get_title();
-    $description = $item->get_description();
-    $image       = $this->get_image( $item );
+  public function parse( $url ) {
+    // Don't worry about refetching RSS feeds, they are cached by
+    // WordPress
+    $items      = $this->get_items( $url );
+    $feed_items = [];
 
-    return [
-      'title'       => $title,
-      'description' => $description,
-      'image'       => $image,
-    ];
+    foreach ( $items as $item ) {
+      $feed_item = new Feed_Item();
+
+      $feed_item->title       = $item->get_title();
+      $feed_item->description = $item->get_description();
+      $feed_item->image       = $this->get_image( $item );
+
+      $feed_items[] = $feed_item;
+    }
+    
+
+    return $feed_items;
   }
 
   private function get_image( $item ) {
@@ -64,5 +86,26 @@ class Wordpress_Rss_Parser {
     }
 
     return '';
+  }
+
+  private function get_items( $url ) {
+    $feed = $this->get_feed( $url );
+    $feed->sort_by_date( 'desc' );
+    $items = $feed->get_items();
+
+    return $items;
+  }
+
+  private function get_feed( $url ) {
+    $feed = $this->rss_facade->get_feed( $url );
+
+    try {
+      $feed->retrieve_items();
+    } catch ( Exception $e ) {
+      error_log( 'Could not load RSS Feed' );
+      return;
+    }
+
+    return $feed;
   }
 }
