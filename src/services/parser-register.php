@@ -29,10 +29,11 @@ class Parser_Register extends Register {
   public static function parse( $urls ) {
     $feed_items = [];
 
-    foreach ( self::$parsers as $parser ) {
-      foreach ( $urls as $url ) {
+    foreach ( $urls as $url ) {
+      foreach ( self::$parsers as $parser ) {
         if ( $parser->can_parse( $url ) ) {
           $feed_items += $parser->parse( $url );
+          break;
         }
       }
     }
