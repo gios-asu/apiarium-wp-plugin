@@ -1,0 +1,127 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "3fbec21afdc5bb864f7d003a86c52a56",
+    "packages": [
+        {
+            "name": "gios-asu/honeycomb",
+            "version": "dev-ivan-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gios-asu/honeycomb.git",
+                "reference": "da07f98e8a0da1c12326d376108344e8d44bd8d0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "The Global Institute of Sustainability",
+                    "email": "giosweb@asu.edu"
+                }
+            ],
+            "description": "A framework for WordPress plugins",
+            "time": "2015-08-28 00:23:57"
+        },
+        {
+            "name": "gios-asu/nectary",
+            "version": "dev-ivan-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gios-asu/nectary.git",
+                "reference": "a7c98a125ef991de463509d7bcb0d137d0376983"
+            },
+            "require": {
+                "xamin/handlebars.php": "dev-master"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/utilities/command-utilities.php",
+                    "src/utilities/configuration-utilities.php",
+                    "src/utilities/ensure_default.php"
+                ],
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "The Global Institute of Sustainability",
+                    "email": "giosweb@asu.edu"
+                }
+            ],
+            "description": "A simple PHP framework that is not tied to a web interface",
+            "time": "2015-08-27 23:35:23"
+        },
+        {
+            "name": "xamin/handlebars.php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/XaminProject/handlebars.php.git",
+                "reference": "5e1db1d1c7969fae32eab331a3b4d9b93257a709"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/XaminProject/handlebars.php/zipball/5e1db1d1c7969fae32eab331a3b4d9b93257a709",
+                "reference": "5e1db1d1c7969fae32eab331a3b4d9b93257a709",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.4",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Handlebars": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fzerorubigd",
+                    "email": "fzerorubigd@gmail.com"
+                },
+                {
+                    "name": "Behrooz Shabani (everplays)",
+                    "email": "everplays@gmail.com"
+                }
+            ],
+            "description": "Handlebars processor for php",
+            "homepage": "https://github.com/XaminProject/handlebars.php",
+            "time": "2015-08-06 22:16:36"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "gios-asu/nectary": 20,
+        "gios-asu/honeycomb": 20,
+        "xamin/handlebars.php": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

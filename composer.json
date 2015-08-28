@@ -1,0 +1,29 @@
+{
+    "name": "gios-asu/apiarium-wp-plugin",
+    "description": "Television Screen and Kiosk WordPress Plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "The Global Institute of Sustainability",
+            "email": "giosweb@asu.edu"
+        }
+    ],
+    "autoload": {
+        "classmap" : [ "src/" ]
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/gios-asu/nectary.git",
+            "type": "git"
+        },
+        {
+            "url": "https://github.com/gios-asu/honeycomb.git",
+            "type": "git"
+        }
+    ],
+    "require": {
+        "gios-asu/nectary": "dev-ivan-develop",
+        "gios-asu/honeycomb": "dev-ivan-develop",
+        "xamin/handlebars.php": "dev-master"
+    }
+}
