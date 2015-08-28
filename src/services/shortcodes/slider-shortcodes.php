@@ -50,7 +50,8 @@ class Slider_Shortcodes extends Hook {
         $this->get_slide_factory( $atts['layout'] )
     );
 
-    $carousel_factory->set_limit( $atts['limit'] );
+    // TODO pass the limit to the Parser_Register
+    // $carousel_factory->set_limit( $atts['limit'] );
 
     $html = $carousel_factory->build();
 

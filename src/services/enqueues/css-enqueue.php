@@ -11,7 +11,11 @@ if ( ! defined( 'APIARIUM_WP_VERSION' ) ) {
   exit();
 }
 
+/**
+ * Enqueue any CSS for the plugin here
+ */
 class Css_Enqueue extends Hook {
+  // TODO inject the version
   public function __construct() {
     $this->plugin_slug = 'apiarium-css-styles';
     $this->version     = '0.1';
