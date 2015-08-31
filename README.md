@@ -2,6 +2,10 @@
 
 Television Screen and Kiosk WordPress Plugin
 
+## Icons
+
+Icons are provided thanks to [MerlinTheRed](http://merlinthered.deviantart.com/art/plain-weather-icons-157162192) under the Creative Commons Attribution-ShareAlike license.
+
 ## Example Settings
 
 ```
