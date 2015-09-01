@@ -33,7 +33,7 @@ before_script:
   - export BASEDIR=`pwd`
   - mkdir -p $WP_DEVELOP_DIR
   # Use the Git mirror of WordPress.
-  - svn co http://develop.svn.wordpress.org/trunk/tests/phpunit/includes/ ${WP_DEVELOP_DIR}include
+  - svn co http://develop.svn.wordpress.org/trunk/tests/phpunit/includes/ ${WP_DEVELOP_DIR}includes
   # Set up WordPress configuration.
   - cd $WP_DEVELOP_DIR
   - echo $WP_DEVELOP_DIR
