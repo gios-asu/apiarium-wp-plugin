@@ -27,10 +27,12 @@ class Flickr_Rss_Parser {
    * @return Boolean
    */
   public function can_parse( $url ) {
-    if ( strpos( $url, self::FLICKR_URL ) !== false ) {
-      if ( $feed = $this->get_feed( $url ) ) {
-        if ( $feed instanceof Rss_Feed ) {
-          return true;
+    if ( is_string( $url ) ) {
+      if ( strpos( $url, self::FLICKR_URL ) !== false ) {
+        if ( $feed = $this->get_feed( $url ) ) {
+          if ( $feed instanceof Rss_Feed ) {
+            return true;
+          }
         }
       }
     }

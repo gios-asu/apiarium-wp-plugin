@@ -3,6 +3,7 @@
 namespace Apiarium\Services\Json_Parsers;
 
 use Nectary\Facades\Generic_Json_Facade;
+use Nectary\Utilities\Json_Utilities;
 use Apiarium\Models\Feed_Item;
 
 class Yahoo_Weather_Json_Parser {
@@ -15,8 +16,10 @@ class Yahoo_Weather_Json_Parser {
   }
 
   public function can_parse( $url ) {
-    if ( strpos( $url, self::YAHOO_API_URL ) > -1 ) {
-      return true;
+    if ( is_string( $url ) ) {
+      if ( strpos( $url, self::YAHOO_API_URL ) > -1 ) {
+        return true;
+      }
     }
 
     return false;
@@ -26,11 +29,14 @@ class Yahoo_Weather_Json_Parser {
     $feed = $this->get_feed( $url );
     $items = $feed->get_items();
 
-    $forecast = $items['query']['results']['channel']['item']['forecast'];
+    $forecast = Json_Utilities::get( $items, 'query.results.channel.item.forecast' );
 
-    $feed_items = $this->create_feed_items( $forecast, $items );
-
-    return iterator_to_array( $feed_items );
+    if ( is_array( $forecast ) ) {
+      $feed_items = $this->create_feed_items( $forecast, $items );  
+      return iterator_to_array( $feed_items );
+    } else {
+      return [];
+    }
   }
 
   private function get_feed( $url ) {
@@ -54,14 +60,14 @@ class Yahoo_Weather_Json_Parser {
       $feed_item->description = $item['low'] . '&deg; / ' . $item['high'] . '&deg;';
       $feed_item->image = $this->get_image( $item['code'] );
       $feed_item->metadata = array(
-        'city' => $this->get( $full_feed, 'query.results.channel.location.city' ),
-        'region' => $this->get( $full_feed, 'query.results.channel.location.region' ),
-        'temperature_unit' => $this->get( $full_feed, 'query.results.channel.units.temperature' ),
-        'current_humidity' => $this->get( $full_feed, 'query.results.channel.atmosphere.humidity' ),
-        'current_wind_speed' => $this->get( $full_feed, 'query.results.channel.wind.speed' ),
-        'current_wind_speed_units' => $this->get( $full_feed, 'query.results.channel.units.speed' ),
+        'city' => Json_Utilities::get( $full_feed, 'query.results.channel.location.city' ),
+        'region' => Json_Utilities::get( $full_feed, 'query.results.channel.location.region' ),
+        'temperature_unit' => Json_Utilities::get( $full_feed, 'query.results.channel.units.temperature' ),
+        'current_humidity' => Json_Utilities::get( $full_feed, 'query.results.channel.atmosphere.humidity' ),
+        'current_wind_speed' => Json_Utilities::get( $full_feed, 'query.results.channel.wind.speed' ),
+        'current_wind_speed_units' => Json_Utilities::get( $full_feed, 'query.results.channel.units.speed' ),
         'current_wind_direction' => $this->degrees_to_direction(
-            $this->get( $full_feed, 'query.results.channel.wind.direction' )
+            Json_Utilities::get( $full_feed, 'query.results.channel.wind.direction' )
         ),
       );
 
@@ -78,23 +84,6 @@ class Yahoo_Weather_Json_Parser {
           dirname( dirname( dirname( dirname( __FILE__ ) ) ) )
       );
     }
-  }
-
-  private function get( $feed, $path ) {
-    $path_parts = explode( '.', $path );
-
-    $current = $feed;
-
-    foreach ( $path_parts as $part ) {
-      if ( is_array( $current ) &&
-           array_key_exists( $part, $current ) ) {
-        $current = $current[ $part ];  
-      } else {
-        break;
-      }
-    }
-
-    return $current;
   }
 
   private function degrees_to_direction( $degrees ) {
