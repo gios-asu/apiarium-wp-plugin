@@ -92,7 +92,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gios-asu/nectary.git",
-                "reference": "f399604edc4a68bed35a3e5197e705ac5bafb00c"
+                "reference": "80d5a3b78382ba8f7b6db96afa7b80cb577ea3f3"
             },
             "require": {
                 "xamin/handlebars.php": "dev-master"
@@ -123,7 +123,7 @@
                 }
             ],
             "description": "A simple PHP framework that is not tied to a web interface",
-            "time": "2015-09-01 22:02:29"
+            "time": "2015-09-01 23:48:01"
         },
         {
             "name": "guzzle/guzzle",
