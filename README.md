@@ -1,5 +1,7 @@
 ![Apiarium](documentation/images/apiarium-with-text.png)
 
+[![Build Status](https://travis-ci.org/gios-asu/apiarium-wp-plugin.svg?branch=ivan-develop)](https://travis-ci.org/gios-asu/apiarium-wp-plugin) [![Coverage Status](https://coveralls.io/repos/gios-asu/apiarium-wp-plugin/badge.svg?branch=develop&service=github)](https://coveralls.io/github/gios-asu/apiarium-wp-plugin?branch=develop)
+
 Television Screen and Kiosk WordPress Plugin
 
 ## Icons
