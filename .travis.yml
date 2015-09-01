@@ -38,11 +38,12 @@ before_script:
   # Set up WordPress configuration.
   - cd $WP_DEVELOP_DIR
   - echo $WP_DEVELOP_DIR
-  - wget -nv -O wp-tests-config.php http://develop.svn.wordpress.org/trunk/wp-tests-config-sample.php
-  - sed -i "s:dirname( __FILE__ ) . '/src/':'$WP_DEVELOP_DIR':" wp-tests-config.php
-  - sed -i "s/youremptytestdbnamehere/$DB_NAME/" wp-tests-config.php
-  - sed -i "s/yourusernamehere/$DB_USER/" wp-tests-config.php
-  - sed -i "s/yourpasswordhere/$DB_PASS/" wp-tests-config.php
+  - cp wp-tests-config-sample.php wp-tests-config.php
+  #- wget -nv -O wp-tests-config.php http://develop.svn.wordpress.org/trunk/wp-tests-config-sample.php
+  #- sed -i "s:dirname( __FILE__ ) . '/src/':'$WP_DEVELOP_DIR':" wp-tests-config.php
+  - sed -i "s/youremptytestdbnamehere/wordpress_test/" wp-tests-config.php
+  - sed -i "s/yourusernamehere/root/" wp-tests-config.php
+  - sed -i "s/yourpasswordhere//" wp-tests-config.php
   # Create WordPress database.
   - mysql -e 'CREATE DATABASE wordpress_test;' -uroot
   # Install CodeSniffer for WordPress Coding Standards checks.
