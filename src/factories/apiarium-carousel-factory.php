@@ -7,44 +7,75 @@ use Nectary\Factories\Html_Slide_Factory;
 use Apiarium\Services\Parser_Register;
 use Apiarium\Models\Feed_Item;
 
+/**
+ * Special Carousel builder for Apiarium
+ * 
+ * This builder knows how to build generic slides for the
+ * carousel.
+ */
 class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
   private $feed_items;
-  private $limit;
   private $slide_factory_class;
   private $include_heading;
   private $include_caption;
   private $include_image;
 
+  /**
+   * Setup defaults
+   *
+   * @constructor
+   * @param $feed_items Array<Apiarium\Models\Feed_Item>
+   */
   public function __construct( $feed_items ) {
     $this->feed_items = $feed_items;
 
-    $this->limit               = 15;
     $this->slide_factory_class = Html_Slide_Factory::class;
     $this->include_heading     = false;
     $this->include_caption     = false;
     $this->include_image       = false;
   }
 
+  /**
+   * Set the correct slide factory class to use.
+   *
+   * Defaults to the Html_Slide_Factory, which is not
+   * always desired
+   * 
+   * @param $slide_factory_class String
+   */
   public function set_slide_factory( $slide_factory_class ) {
     $this->slide_factory_class = $slide_factory_class;
   }
 
+  /**
+   * Set whether to include the heading provided by the
+   * Feed Items.
+   */
   public function set_include_heading( $include = true ) {
     $this->include_heading = $include;
   }
 
+  /**
+   * Set whether to include the caption provided by the
+   * Feed Items
+   */
   public function set_include_caption( $include = true ) {
     $this->include_caption = $include;
   }
 
+  /**
+   * Set whether to include the image provided by the
+   * Feed Items
+   */
   public function set_include_image( $include = true ) {
     $this->include_image = $include;
   }
 
-  public function set_limit( $limit ) {
-    $this->limit = $limit;
-  }
-
+  /**
+   * Create the slider.
+   * 
+   * @return String html
+   */
   public function build() {
     $slides   = $this->build_slides();
     $carousel = $this->build_carousel( $slides );

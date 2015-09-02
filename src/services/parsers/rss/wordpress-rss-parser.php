@@ -16,14 +16,20 @@ class Wordpress_Rss_Parser {
   }
 
   public function can_parse( $url ) {
-    if ( $feed = $this->get_feed( $url ) ) {
-      if ( $feed instanceof Rss_Feed ) {
-        if ( ! empty( $feed->get_items() ) ) {
-          if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
-            return true;  
+    try {
+      if ( is_string( $url ) ) {
+        if ( $feed = $this->get_feed( $url ) ) {
+          if ( $feed instanceof Rss_Feed ) {
+            if ( ! empty( $feed->get_items() ) ) {
+              if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
+                return true;  
+              }
+            }
           }
         }
       }
+    } catch ( \Exception $e ) {
+      return false;
     }
 
     return false;

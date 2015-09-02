@@ -2,20 +2,154 @@
  * Apiarium Styles
  */
 
+/**
+ * Scaffolding
+ */
+.apiarium__viewport {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.apiarium__viewport p {
+  font-size: 18px;
+  font-size: 1vw;
+}
+
+.apiarium__viewport h1,
+.apiarium__viewport h2,
+.apiarium__viewport h3 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.apiarium__viewport h1 {
+  font-size: 1.5vw;
+}
+
+.apiarium__viewport h2 {
+  font-size: 1.3vw;
+}
+
+.apiarium__viewport h3 {
+  font-size: 1.1vw;
+}
+
+/**
+ * Flex Scaffolding
+ */
 .apiarium__row {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
+  /* previous syntax */
+  display: -webkit-box;
+  display:    -moz-box;
+  display:     -ms-box;
+  display:         box;
+
+  -webkit-box-orient: horizontal;
+     -moz-box-orient: horizontal;
+      -ms-box-orient: horizontal;
+          box-orient: horizontal;
+
+  /* current syntax */
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: row;
+     -moz-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+
   margin-right: -25px;
+  width: 100%;
 }
 
 .apiarium__column {
-  flex: 1;
-  flex-direction: column;
-  padding-right: 25px;
+  /* previous syntax */
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+
+  -webkit-box-orient: vertical;
+     -moz-box-orient: vertical;
+      -ms-box-orient: vertical;
+          box-orient: vertical;
+
+  /* current syntax */
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+  height: 100%;
+  margin-right: 25px;
 }
 
+.apiarium__flex {
+  display: flex;
+}
+
+/**
+ * Layout Scaffolding
+ */
 .apiarium__newspaper__image {
   margin: 25px 25px 0 0;
   width: 25%;
+}
+
+/**
+ * Carousel
+ */
+.apiarium__slider {
+  width: 100%;
+}
+
+.apiarium__slider .carousel {
+  max-height: 100%;
+}
+
+.apiarium__slider .item img {
+  max-height: 100%;
+  margin: auto;
+}
+
+.apiarium__slider .carousel-caption * {
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+}
+
+/**
+ * Components
+ */
+.apiarium__flex img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.apiarium__weather__forecast {
+  float: left;
+  text-align: center;
+  width: 22%;
+}
+
+.apiarium__weather__forecast img {
+  width: 80%;
+}
+
+.apiarium__weather__forecast:first-child {
+  width: 34%;
+}
+
+.apiarium__weather__forecast:first-child img {
+  width: 100%;
+}
+
+.apiarium__weather__forecast:first-child h3 {
+  display: none;
 }

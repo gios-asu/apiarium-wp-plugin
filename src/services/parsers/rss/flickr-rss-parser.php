@@ -6,19 +6,33 @@ use Apiarium\Models\Feed_Item;
 use Honeycomb\Facades\Wordpress_Rss_Facade;
 use Nectary\Models\Rss_Feed;
 
+/**
+ * Parse Flicker feeds
+ */
 class Flickr_Rss_Parser {
   const FLICKR_URL = 'api.flickr.com';
+
   private $rss_facade;
 
+  /**
+   * @constructor
+   * @param Wordpress_Rss_Facade $rss_facade
+   */
   public function __construct( Wordpress_Rss_Facade $rss_facade ) {
     $this->rss_facade = $rss_facade;
   }
 
+  /**
+   * @param String $url
+   * @return Boolean
+   */
   public function can_parse( $url ) {
-    if ( $feed = $this->get_feed( $url ) ) {
-      if ( $feed instanceof Rss_Feed ) {
-        if ( strpos( $url, self::FLICKR_URL ) > -1 ) {
-          return true;
+    if ( is_string( $url ) ) {
+      if ( strpos( $url, self::FLICKR_URL ) !== false ) {
+        if ( $feed = $this->get_feed( $url ) ) {
+          if ( $feed instanceof Rss_Feed ) {
+            return true;
+          }
         }
       }
     }
@@ -26,6 +40,10 @@ class Flickr_Rss_Parser {
     return false;
   }
 
+  /**
+   * @param String $url
+   * @return Array<Feed_Items>
+   */
   public function parse( $url ) {
     // Don't worry about refetching RSS feeds, they are cached by
     // WordPress
@@ -41,7 +59,6 @@ class Flickr_Rss_Parser {
 
       $feed_items[] = $feed_item;
     }
-    
 
     return $feed_items;
   }
