@@ -24,7 +24,9 @@
     "require": {
         "gios-asu/nectary": "dev-ivan-develop",
         "gios-asu/honeycomb": "dev-ivan-develop",
-        "xamin/handlebars.php": "dev-master",
+        "xamin/handlebars.php": "dev-master"
+    },
+    "require-dev": {
         "phpunit/phpunit": "4.8.*",
         "satooshi/php-coveralls": ">=0.6"
     }

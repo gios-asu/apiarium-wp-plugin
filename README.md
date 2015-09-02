@@ -4,11 +4,19 @@
 
 Television Screen and Kiosk WordPress Plugin
 
-## Icons
+## Requirements
 
-Icons are provided thanks to [MerlinTheRed](http://merlinthered.deviantart.com/art/plain-weather-icons-157162192) under the Creative Commons Attribution-ShareAlike license.
+* WordPress 4.1+
+* Composer
+
+## Installation
+
+* Clone the repo into your `wp-plugins` directory
+* Run `composer install` in the root of the plugin, ex: `cd wp-plugins/apiarium-wp-plugin; composer install`
 
 ## Example Settings
+
+Make a Page with the following text in it:
 
 ```
 [display theme=green]
@@ -50,3 +58,9 @@ Icons are provided thanks to [MerlinTheRed](http://merlinthered.deviantart.com/a
   [/display-row]
 [/display]
 ```
+
+* `/tag/test/feed/` will pull in posts from your blog with the `test` tag.
+
+## Additional Credits
+
+Icons are provided thanks to [MerlinTheRed](http://merlinthered.deviantart.com/art/plain-weather-icons-157162192) under the Creative Commons Attribution-ShareAlike license.

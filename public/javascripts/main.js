@@ -16,5 +16,15 @@
     $( '.carousel' ).carousel( {
       pause: 'false'
     } );
+
+    setInterval( function animate_tweets () {
+      $( '.apiarium__tweet').first().each( function animate ( i,e ) {
+        $(e).animate({
+            'margin-top': - $(e).height() + 'px'
+          }, 'slow', function after () {
+            $(this).parent().append( $(this ) ) 
+        });
+      });
+    }, 10000 /* 10 seconds */ );
   } );
 }( jQuery );

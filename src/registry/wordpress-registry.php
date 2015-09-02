@@ -12,4 +12,5 @@ return [
   Apiarium\Services\Css_Enqueue::class,
   Apiarium\Services\Javascript_Enqueue::class,
   Apiarium\Services\Page_Templates::class,
+  Apiarium\Services\Admin_Panel::class,
 ];
