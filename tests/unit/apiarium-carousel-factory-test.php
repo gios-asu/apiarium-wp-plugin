@@ -10,7 +10,7 @@ use Apiarium\Models\Feed_Item;
  *
  * @group factory
  */
-class Command_Test extends \PHPUnit_Framework_TestCase {
+class Apiarium_Carousel_Factory_Test extends \PHPUnit_Framework_TestCase {
   protected $feed_items;
 
   function setUp() {

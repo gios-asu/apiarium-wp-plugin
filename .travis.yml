@@ -12,15 +12,15 @@ env:
   # Trunk
   # @link https://github.com/WordPress/WordPress
   - WP_VERSION=master WP_MULTISITE=0
-  #- WP_VERSION=master WP_MULTISITE=1
+  - WP_VERSION=master WP_MULTISITE=1
   # WordPress 4.2
   # @link https://github.com/WordPress/WordPress/tree/4.2-branch
-  #- WP_VERSION=4.2 WP_MULTISITE=0
-  #- WP_VERSION=4.2 WP_MULTISITE=1
+  - WP_VERSION=4.2 WP_MULTISITE=0
+  - WP_VERSION=4.2 WP_MULTISITE=1
   # WordPress 4.1
   # @link https://github.com/WordPress/WordPress/tree/4.1-branch
-  #- WP_VERSION=4.1 WP_MULTISITE=0
-  #- WP_VERSION=4.1 WP_MULTISITE=1
+  - WP_VERSION=4.1 WP_MULTISITE=0
+  - WP_VERSION=4.1 WP_MULTISITE=1
 
 install:
   - composer install --no-interaction --prefer-source
@@ -39,30 +39,16 @@ before_script:
   - cd $WP_DEVELOP_DIR
   - echo $WP_DEVELOP_DIR
   - cp wp-tests-config-sample.php wp-tests-config.php
-  #- wget -nv -O wp-tests-config.php http://develop.svn.wordpress.org/trunk/wp-tests-config-sample.php
-  #- sed -i "s:dirname( __FILE__ ) . '/src/':'$WP_DEVELOP_DIR':" wp-tests-config.php
   - sed -i "s/youremptytestdbnamehere/wordpress_test/" wp-tests-config.php
   - sed -i "s/yourusernamehere/root/" wp-tests-config.php
   - sed -i "s/yourpasswordhere//" wp-tests-config.php
   # Create WordPress database.
   - mysql -e 'CREATE DATABASE wordpress_test;' -uroot
-  # Install CodeSniffer for WordPress Coding Standards checks.
-  #- git clone https://github.com/squizlabs/PHP_CodeSniffer.git php-codesniffer
-  # Install WordPress Coding Standards.
-  #- git clone https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git wordpress-coding-standards
-  # Hop into CodeSniffer directory.
-  #- cd php-codesniffer
-  # Set install path for WordPress Coding Standards.
-  # @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
-  #- scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
-  # Hop into themes directory.
   - cd $BASEDIR
-  # After CodeSniffer install you should refresh your path.
   - phpenv rehash
 
 script:
   - vendor/bin/phpunit --coverage-clover coverage/clover.xml
-  #- $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
 
 after_script:
   - php vendor/bin/coveralls -v
