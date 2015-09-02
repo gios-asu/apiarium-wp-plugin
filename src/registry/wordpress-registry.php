@@ -13,4 +13,5 @@ return [
   Apiarium\Services\Javascript_Enqueue::class,
   Apiarium\Services\Page_Templates::class,
   Apiarium\Services\Admin_Panel::class,
+  Apiarium\Services\Calendar_Shortcodes::class,
 ];

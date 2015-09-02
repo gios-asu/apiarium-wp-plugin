@@ -108,7 +108,10 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
     
     if ( $this->include_heading ) {
       $slide->add_heading(
-          $feed_item->title
+          $feed_item->title,
+          array(
+            'level' => 3
+          )
       );
     }
     
