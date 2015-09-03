@@ -57,7 +57,7 @@ class Yahoo_Weather_Json_Parser {
       $feed_item = new Feed_Item();
 
       $feed_item->title = $item['day'];
-      $feed_item->description = $item['low'] . '&deg; / ' . $item['high'] . '&deg;';
+      $feed_item->description = $item['high'] . '&deg; / ' . $item['low'] . '&deg;';
       $feed_item->image = $this->get_image( $item['code'] );
       $feed_item->metadata = array(
         'city' => Json_Utilities::get( $full_feed, 'query.results.channel.location.city' ),

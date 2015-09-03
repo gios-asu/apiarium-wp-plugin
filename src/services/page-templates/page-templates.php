@@ -14,12 +14,14 @@ if ( ! defined( 'APIARIUM_WP_VERSION' ) ) {
 class Page_Templates extends Hook {
   use \Honeycomb\Traits\Page_Template_Trait;
 
+  const TEMPLATE_NAME = 'apiarium-template.php';
+
   protected $templates;
   protected $path_to_templates;
 
   public function __construct() {
     $this->templates = array(
-      'default-template.php' => 'Kiosk Template'
+      self::TEMPLATE_NAME => 'Kiosk Template'
     );
 
     $this->path_to_templates = plugin_dir_path( __FILE__ );

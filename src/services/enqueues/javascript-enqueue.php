@@ -3,6 +3,7 @@
 namespace Apiarium\Services;
 
 use Honeycomb\Wordpress\Hook;
+use Apiarium\Services\Page_Templates;
 
 // Avoid direct calls to this file
 if ( ! defined( 'APIARIUM_WP_VERSION' ) ) {
@@ -35,6 +36,16 @@ class Javascript_Enqueue extends Hook {
   * Enqueue styles.
   */
   function enqueue_scripts() {
-    wp_enqueue_script( $this->plugin_slug, $this->javascript, '', $this->version );
+    if ( is_page_template ( Page_Templates::TEMPLATE_NAME ) ) {
+      wp_enqueue_script( $this->plugin_slug, $this->javascript, '', $this->version );
+      wp_localize_script(
+          $this->plugin_slug,
+          'apiarium',
+          array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce'    => wp_create_nonce( 'apiarium-twitter' ),
+          )
+      );
+    }
   }
 }

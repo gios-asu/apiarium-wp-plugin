@@ -14,4 +14,5 @@ return [
   Apiarium\Services\Page_Templates::class,
   Apiarium\Services\Admin_Panel::class,
   Apiarium\Services\Calendar_Shortcodes::class,
+  Apiarium\Services\Twitter_Ajax::class,
 ];
