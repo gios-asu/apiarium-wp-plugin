@@ -1,42 +1,49 @@
 <?php
 
-namespace Apiarium\Services\Rss_Parsers;
+namespace Apiarium\Parsers\Rss_Parsers;
 
 use Apiarium\Models\Feed_Item;
-use Honeycomb\Facades\Wordpress_Rss_Facade;
+use Honeycomb\Services\Wordpress_Feed_Service;
 use Nectary\Models\Rss_Feed;
 
-class Wordpress_Rss_Parser {
-  const PURL_RSS = 'http://purl.org/rss/1.0/modules/content/';
+/**
+ * Parse Flicker feeds
+ */
+class Flickr_Rss_Parser {
+  const FLICKR_URL = 'api.flickr.com';
 
-  private $rss_facade;
+  private $feed_service;
 
-  public function __construct( Wordpress_Rss_Facade $rss_facade ) {
-    $this->rss_facade = $rss_facade;
+  /**
+   * @constructor
+   * @param Wordpress_Rss_Facade $feed_service
+   */
+  public function __construct( Wordpress_Feed_Service $feed_service ) {
+    $this->feed_service = $feed_service;
   }
 
+  /**
+   * @param String $url
+   * @return Boolean
+   */
   public function can_parse( $url ) {
-    try {
-      if ( is_string( $url ) ) {
+    if ( is_string( $url ) ) {
+      if ( strpos( $url, self::FLICKR_URL ) !== false ) {
         if ( $feed = $this->get_feed( $url ) ) {
           if ( $feed instanceof Rss_Feed ) {
-            if ( ! empty( $feed->get_items() ) ) {
-              if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
-                return true;  
-              }
-            }
+            return true;
           }
         }
       }
-    } catch ( \Exception $e ) {
-      return false;
     }
 
     return false;
   }
 
-  // TODO remove the "The post XYZ appeared first on ABC" text from
-  // the description
+  /**
+   * @param String $url
+   * @return Array<Feed_Items>
+   */
   public function parse( $url ) {
     // Don't worry about refetching RSS feeds, they are cached by
     // WordPress
@@ -52,33 +59,15 @@ class Wordpress_Rss_Parser {
 
       $feed_items[] = $feed_item;
     }
-    
 
     return $feed_items;
   }
 
   private function get_image( $item ) {
-    $raw = $item->get_item_tags(
-        self::PURL_RSS,
-        'encoded'
-    );
-
-    if ( ! empty( $raw ) ) {
-      $description = $raw[0]['data'];
-
-      $image = $this->get_image_from_text( $description );
-
-      return $image;
-    }
-
-    return false;
-  }
-
-  private function get_image_from_text( $content ) {
     $image_regex = '/<img[^>]+>/i';
     $image_source_regex = '/src="([^"]+)"/i';
 
-    preg_match_all( $image_regex, $content, $pics );
+    preg_match_all( $image_regex, $item->get_description(), $pics );
 
     if ( 1 <= count( $pics[0] ) ) {
       // Pull out the image source and the image alt
@@ -87,7 +76,7 @@ class Wordpress_Rss_Parser {
         $image_source = $source_matches[1];
       }
 
-      return $image_source;
+      return str_replace( '_m.jpg', '_b.jpg', $image_source );
     }
 
     return '';
@@ -102,12 +91,12 @@ class Wordpress_Rss_Parser {
   }
 
   private function get_feed( $url ) {
-    $feed = $this->rss_facade->get_feed( $url );
+    $feed = $this->feed_service->get_feed( $url );
 
     try {
       $feed->retrieve_items();
     } catch ( Exception $e ) {
-      error_log( 'Could not load WordPress RSS Feed' );
+      error_log( 'Could not load Flickr RSS Feed' );
       return;
     }
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace Apiarium\Services\Json_Parsers;
+namespace Apiarium\Parsers\Json_Parsers;
 
-use Nectary\Facades\Twitter_Json_Facade;
+use Nectary\Services\Twitter_Feed_Service;
 use Nectary\Utilities\Json_Utilities;
 use Apiarium\Models\Feed_Item;
 
 class Twitter_Json_Parser {
-  private $json_facade;
+  private $feed_service;
 
-  public function __construct( Twitter_Json_Facade $json_facade ) {
-    $this->json_facade = $json_facade;
+  public function __construct( Twitter_Feed_Service $feed_service ) {
+    $this->feed_service = $feed_service;
   }
 
   public function can_parse( $request ) {
@@ -43,7 +43,7 @@ class Twitter_Json_Parser {
   }
 
   private function get_feed( $request ) {
-    $feed = $this->json_facade->get_feed( $request );
+    $feed = $this->feed_service->get_feed( $request );
 
     try {
       $feed->retrieve_items();
