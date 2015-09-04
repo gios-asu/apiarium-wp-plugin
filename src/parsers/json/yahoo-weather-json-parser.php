@@ -1,18 +1,18 @@
 <?php
 
-namespace Apiarium\Services\Json_Parsers;
+namespace Apiarium\Parsers\Json_Parsers;
 
-use Nectary\Facades\Generic_Json_Facade;
+use Nectary\Services\Json_Feed_Service;
 use Nectary\Utilities\Json_Utilities;
 use Apiarium\Models\Feed_Item;
 
 class Yahoo_Weather_Json_Parser {
   const YAHOO_API_URL = 'yahooapis.com';
 
-  private $json_facade;
+  private $feed_service;
 
-  public function __construct( Generic_Json_Facade $json_facade ) {
-    $this->json_facade = $json_facade;
+  public function __construct( Json_Feed_Service $feed_service ) {
+    $this->feed_service = $feed_service;
   }
 
   public function can_parse( $url ) {
@@ -40,7 +40,7 @@ class Yahoo_Weather_Json_Parser {
   }
 
   private function get_feed( $url ) {
-    $feed = $this->json_facade->get_feed( $url );
+    $feed = $this->feed_service->get_feed( $url );
 
     try {
       $feed->retrieve_items();
@@ -81,7 +81,7 @@ class Yahoo_Weather_Json_Parser {
     } else {
       return plugins_url(
           "public/images/flat-weather/{$code}.png",
-          dirname( dirname( dirname( dirname( __FILE__ ) ) ) )
+          dirname( dirname( dirname( __FILE__ ) ) )
       );
     }
   }
