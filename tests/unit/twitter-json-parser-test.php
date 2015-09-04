@@ -65,6 +65,13 @@ class Twitter_Json_Parser_Test extends \PHPUnit_Framework_TestCase {
           )
         )
     );
+
+    $this->very_bad_twitter_feed = $this->getMockBuilder( 'Object' )
+    ->setMethods( ['get_items', 'retrieve_items'] )
+    ->getMock();
+
+    $this->very_bad_twitter_feed->method( 'retrieve_items' )
+    ->will( $this->throwException( new \Exception() ) );
   }
 
   function test_can_parse_request() {
@@ -94,6 +101,17 @@ class Twitter_Json_Parser_Test extends \PHPUnit_Framework_TestCase {
     $this->feed_service_mock->expects( $this->once() )
     ->method( 'get_feed' )
     ->will( $this->returnValue( $this->bad_twitter_feed ) );
+
+    $feed = $this->parser->parse( $this->good_request );
+
+    $this->assertInternalType( 'array', $feed );
+    $this->assertCount( 0, $feed );
+  }
+
+  function test_returns_empty_data_when_feed_throws_exception() {
+    $this->feed_service_mock->expects( $this->once() )
+    ->method( 'get_feed' )
+    ->will( $this->returnValue( $this->very_bad_twitter_feed ) );
 
     $feed = $this->parser->parse( $this->good_request );
 
