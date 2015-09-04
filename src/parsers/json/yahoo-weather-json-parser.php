@@ -26,7 +26,12 @@ class Yahoo_Weather_Json_Parser {
   }
 
   public function parse( $url ) {
-    $feed = $this->get_feed( $url );
+    try {
+      $feed = $this->get_feed( $url );
+    } catch( \Exception $e ) {
+      return [];
+    }
+
     $items = $feed->get_items();
 
     $forecast = Json_Utilities::get( $items, 'query.results.channel.item.forecast' );
@@ -41,13 +46,7 @@ class Yahoo_Weather_Json_Parser {
 
   private function get_feed( $url ) {
     $feed = $this->feed_service->get_feed( $url );
-
-    try {
-      $feed->retrieve_items();
-    } catch ( Exception $e ) {
-      error_log( 'Could not load Yahoo Weather JSON Feed' );
-      return;
-    }
+    $feed->retrieve_items();
 
     return $feed;
   }

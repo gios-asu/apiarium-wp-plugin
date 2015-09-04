@@ -13,6 +13,11 @@ class Twitter_Json_Parser {
     $this->feed_service = $feed_service;
   }
 
+  /**
+   * A request is parseable by this Parser when it
+   * is an array that has a key-value pair of
+   * `type=>twitter`.
+   */
   public function can_parse( $request ) {
     if ( is_array( $request ) ) {
       if ( array_key_exists( 'type', $request ) ) {
@@ -26,7 +31,12 @@ class Twitter_Json_Parser {
   }
 
   public function parse( $request ) {
-    $feed = $this->get_feed( $request );
+    try {
+      $feed = $this->get_feed( $request );
+    } catch ( \Exception $e ) {
+      return [];
+    }
+    
     $items = $feed->get_items();
 
     $error = Json_Utilities::get_or_default( $items, 'errors.0.message', false );
@@ -45,12 +55,7 @@ class Twitter_Json_Parser {
   private function get_feed( $request ) {
     $feed = $this->feed_service->get_feed( $request );
 
-    try {
-      $feed->retrieve_items();
-    } catch ( Exception $e ) {
-      error_log( 'Could not load Twitter JSON Feed' );
-      return;
-    }
+    $feed->retrieve_items();
 
     return $feed;
   }

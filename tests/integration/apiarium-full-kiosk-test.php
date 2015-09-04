@@ -7,7 +7,7 @@ use Apiarium\Services\Admin_Panel;
 /**
  * @group integration
  */
-class Apiarium_Full_Kiosk_test extends \PHPUnit_Framework_TestCase {
+class Apiarium_Full_Kiosk_Test extends \PHPUnit_Framework_TestCase {
   /**
    * Random Twitter API keys pulled from the Internet
    */
