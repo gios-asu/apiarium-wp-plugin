@@ -18,7 +18,8 @@ class Apiarium_Carousel_Factory_Test extends \PHPUnit_Framework_TestCase {
 
     foreach( range( 1, 3 ) as $_ ) {
       $feed_item = new Feed_Item();
-      $feed_item->title = 'wow';
+      $feed_item->title       = 'wow';
+      $feed_item->description = 'oh caption, my caption';
 
       $this->feed_items[] = $feed_item;
     }
@@ -33,6 +34,21 @@ class Apiarium_Carousel_Factory_Test extends \PHPUnit_Framework_TestCase {
   }
 
   function test_use_injected_slide_factory() {
-    // TODO
+    $factory = new Apiarium_Carousel_Factory( $this->feed_items );
+    $factory->set_slide_factory( \Apiarium\Factories\Overlay_Slide_Factory::class );
+    $factory->set_include_heading();
+    $html = $factory->build();
+
+    $this->assertContains( 'wow', $html );
+  }
+
+  function test_include_caption_includes_the_caption() {
+    $factory = new Apiarium_Carousel_Factory( $this->feed_items );
+    $factory->set_include_heading();
+    $factory->set_include_caption();
+    $html = $factory->build();
+
+    $this->assertContains( 'wow', $html );
+    $this->assertContains( 'oh caption, my caption', $html );
   }
 }
