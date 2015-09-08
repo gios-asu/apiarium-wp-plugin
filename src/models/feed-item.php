@@ -8,10 +8,10 @@ namespace Apiarium\Models;
  * whether that feed is RSS or JSON.
  */
 class Feed_Item {
-  public $id; // TODO
+  public $id;
   public $title;
   public $description;
   public $image;
-  public $post_date; // TODO
+  public $post_date;
   public $metadata;
 }
