@@ -47,7 +47,7 @@ class Wordpress_Rss_Parser {
       $feed_item = new Feed_Item();
 
       // Title + Date should be a good enough ID
-      $feed_item->id          = $this->get_title() . '-' . $this->get_date();
+      $feed_item->id          = $item->get_title() . '-' . $item->get_date();
       $feed_item->title       = $item->get_title();
       $feed_item->description = $item->get_description();
       $feed_item->post_date   = $item->get_date();
