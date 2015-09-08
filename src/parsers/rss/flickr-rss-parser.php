@@ -53,9 +53,14 @@ class Flickr_Rss_Parser {
     foreach ( $items as $item ) {
       $feed_item = new Feed_Item();
 
+      $image                  = $this->get_image( $item );
+
+      // The image should be a good enough ID
+      $feed_item->id          = $image;
       $feed_item->title       = $item->get_title();
       $feed_item->description = $item->get_description();
-      $feed_item->image       = $this->get_image( $item );
+      $feed_item->post_date   = $item->get_date();
+      $feed_item->image       = $image;
 
       $feed_items[] = $feed_item;
     }
