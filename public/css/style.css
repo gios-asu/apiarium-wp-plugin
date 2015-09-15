@@ -125,9 +125,11 @@
   margin: auto;
 }
 
-.apiarium__slider .carousel-caption * {
-  background-color: rgba(0,0,0,0.4);
+.apiarium__slider .carousel-caption > *:not(:empty) {
+  background-color: rgba(0,0,0,0.6);
   color: white;
+  display: inline-block;
+  padding: 10px;
 }
 
 /**
