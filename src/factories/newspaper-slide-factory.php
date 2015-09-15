@@ -38,7 +38,7 @@ class Newspaper_Slide_Factory extends Html_Slide_Factory {
    * @override
    */
   public function build() {
-    if ( $this->image ) {
+    if ( ! empty( $this->image ) ) {
       $image = "
       <div class='pull-left thumbnail apiarium__newspaper__image' style=''>
       {$this->image}
@@ -50,7 +50,7 @@ class Newspaper_Slide_Factory extends Html_Slide_Factory {
 
     $this->html = "
     {$this->heading}
-      {$image}
+    {$image}
     {$this->caption}
 ";
     return parent::build();

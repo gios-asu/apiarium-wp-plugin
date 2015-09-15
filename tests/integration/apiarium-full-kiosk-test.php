@@ -34,9 +34,6 @@ class Apiarium_Full_Kiosk_Test extends \PHPUnit_Framework_TestCase {
     [/display-column]
     [display-column size=2]
       [display-flex size=1 classes=apiarium__no-border]
-        [display-slider content=image]
-          /tag/test/feed/
-        [/display-slider]
       [/display-flex]
     [/display-column]
     [display-column size=1]
@@ -50,9 +47,6 @@ class Apiarium_Full_Kiosk_Test extends \PHPUnit_Framework_TestCase {
       [/display-flex]
       [display-flex size=3]
         <h2>ASU News</h2>
-        [display-slider layout=newspaper]
-          /tag/test/feed/
-        [/display-slider]
       [/display-flex]
     [/display-column]
   [/display-row]
