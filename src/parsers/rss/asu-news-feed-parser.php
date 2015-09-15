@@ -38,9 +38,13 @@ class Asu_News_Rss_Parser {
     foreach ( $items as $item ) {
       $feed_item = new Feed_Item();
 
+      $formatted_date = $item->get_date();
+      $formatted_date = strtotime( $formatted_date );
+      $formatted_date = date( 'F j, Y', $formatted_date );
+
       $feed_item->id          = $item->get_title() . '-' . $item->get_date();
       $feed_item->title       = $item->get_title();
-      $feed_item->description = $item->get_description();
+      $feed_item->description = $formatted_date . '<br/><br/>' . $item->get_description();
       $feed_item->post_date   = $item->get_date();
 
       $feed_items[] = $feed_item;
