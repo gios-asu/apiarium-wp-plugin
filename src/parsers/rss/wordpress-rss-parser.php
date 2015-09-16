@@ -39,7 +39,9 @@ class Wordpress_Rss_Parser {
   // the description
   public function parse( $url ) {
     // Don't worry about refetching RSS feeds, they are cached by
-    // WordPress
+    // WordPress 
+    //
+    // TODO Ivan disabled caching, so we should actually care about this now!
     $items      = $this->get_items( $url );
     $feed_items = [];
 
@@ -109,7 +111,7 @@ class Wordpress_Rss_Parser {
 
     try {
       $feed->retrieve_items();
-    } catch ( Exception $e ) {
+    } catch ( \Exception $e ) {
       error_log( 'Could not load WordPress RSS Feed' );
       return;
     }

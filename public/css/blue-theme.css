@@ -1,0 +1,19 @@
+/**
+ * Green Theme
+ */
+.apiarium__blue {
+  background-color: #C4F2FF;
+  padding: 1vh 1vw;
+}
+
+.apiarium__blue * {
+  color: white;
+}
+
+.apiarium__blue .apiarium__flex:not(.apiarium__no-border) {
+  background-color: #056B88;
+  border: #F1F1F1 5px solid;
+  box-shadow: 2px 2px 5px black;
+  margin: 0.5vh 0.5vw 0;
+  padding: 0.5vh 0.5vw;
+}

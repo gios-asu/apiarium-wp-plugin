@@ -21,6 +21,7 @@ class Css_Enqueue extends Hook {
     $this->version     = '0.1';
     $this->css         = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/css/style.css';
     $this->green_theme = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/css/green-theme.css';
+    $this->blue_theme  = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/css/blue-theme.css';
 
     $this->define_hooks();
   }
@@ -38,5 +39,6 @@ class Css_Enqueue extends Hook {
   function enqueue_styles() {
     wp_enqueue_style( $this->plugin_slug, $this->css, '', $this->version );
     wp_enqueue_style( $this->plugin_slug . 'green', $this->green_theme, '', $this->version );
+    wp_enqueue_style( $this->plugin_slug . 'blue', $this->blue_theme, '', $this->version );
   }
 }

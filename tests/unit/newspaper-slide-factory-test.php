@@ -24,10 +24,10 @@ class Newspaper_Slide_Factory_Test extends \PHPUnit_Framework_TestCase {
     $this->factory = new Newspaper_Slide_Factory();
   }
 
-  function test_empty_newspaper_slide_contains_markup() {
+  function test_empty_newspaper_slide_contains_no_markup() {
     $content = $this->factory->build();
 
-    $this->assertContains( 'apiarium__newspaper__image', $content );
+    $this->assertContains( "<div class='item", $content );
   }
 
   function test_empty_newspaper_slide_contains_added_values() {
