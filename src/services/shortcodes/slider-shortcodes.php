@@ -27,6 +27,14 @@ class Slider_Shortcodes extends Hook {
 
   /**
    * No feed caching!
+   *
+   * If a feed fails (such as the Yahoo Weather API, which may fail periodically due to heavy traffic),
+   * SimplePie (which is what WordPress uses to fetch feeds) will cache the failed feed using
+   * WordPress transients. Basically, if a feed fails, then that failure is cached.
+   *
+   * Obviously, we don't want to cache failed feeds, but until we find a way to only stop failed
+   * feeds from caching, all feed caching will be disabled by returning a lifetime of 0 for the
+   * transients.
    */
   public function lifetime( $a ) {
     return 0;
