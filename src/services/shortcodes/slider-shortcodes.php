@@ -23,6 +23,7 @@ class Slider_Shortcodes extends Hook {
   public function define_hooks() {
     $this->add_shortcode( 'display-slider', $this, 'display_slider' );
     $this->add_filter( 'wp_feed_cache_transient_lifetime', $this, 'lifetime' );
+    $this->add_action(  'wp_feed_options', $this, 'do_not_cache_feeds' );
   }
 
   /**
@@ -38,6 +39,10 @@ class Slider_Shortcodes extends Hook {
    */
   public function lifetime( $a ) {
     return 0;
+  }
+
+  public function do_not_cache_feeds( &$feed ) {
+    $feed->enable_cache( false );
   }
 
   public function display_slider( $atts, $content = '' ) {
