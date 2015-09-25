@@ -37,7 +37,7 @@ class Javascript_Enqueue extends Hook {
   */
   function enqueue_scripts() {
     if ( is_page_template ( Page_Templates::TEMPLATE_NAME ) ) {
-      wp_enqueue_script( $this->plugin_slug, $this->javascript, 'jquery', $this->version );
+      wp_enqueue_script( $this->plugin_slug, $this->javascript, array( 'jquery' ), $this->version );
       wp_localize_script(
           $this->plugin_slug,
           'apiarium',
