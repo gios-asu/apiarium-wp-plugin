@@ -21,9 +21,9 @@ class Wordpress_Rss_Parser {
         if ( $feed = $this->get_feed( $url ) ) {
           if ( $feed instanceof Rss_Feed ) {
             if ( ! empty( $feed->get_items() ) ) {
-              if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
+              //if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
                 return true;  
-              }
+              //}
             }
           }
         }
@@ -58,7 +58,6 @@ class Wordpress_Rss_Parser {
       $feed_items[] = $feed_item;
     }
     
-
     return $feed_items;
   }
 
@@ -72,6 +71,10 @@ class Wordpress_Rss_Parser {
       $description = $raw[0]['data'];
 
       $image = $this->get_image_from_text( $description );
+
+      return $image;
+    } else {
+      $image = $item->get_link(0);
 
       return $image;
     }

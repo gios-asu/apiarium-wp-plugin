@@ -22,25 +22,26 @@ Make a Page with the following text in it:
 [display theme=green]
   [display-row]
     [display-column size=1]
-      [display-flex size=1]
+      [display-flex size=1 classes=apiarium__no-border]
         <img src="https://commguide.asu.edu/files/endorsed/color/JAW-GIOS_RGB.png" />
       [/display-flex]
       [display-flex size=2]
         [display-weather]
       [/display-flex]
       [display-flex size=3]
+        <h2>Twitter</h2>
         [display-twitter search="@asugreen"]
       [/display-flex]
     [/display-column]
     [display-column size=2]
-      [display-flex size=1]
+      [display-flex size=1 classes=apiarium__no-border]
         [display-slider content=image]
-          /tag/test/feed/
+          https://wp.sustainability.dev.gios.asu.edu/?feed=events_rss2
         [/display-slider]
       [/display-flex]
     [/display-column]
     [display-column size=1]
-      [display-flex size=1]
+      [display-flex size=1 classes=apiarium__no-border]
         [display-calendar]
       [/display-flex]
       [display-flex size=2]
@@ -50,8 +51,11 @@ Make a Page with the following text in it:
       [/display-flex]
       [display-flex size=3]
         <h2>ASU News</h2>
-        [display-slider layout=newspaper]
-          /tag/test/feed/
+        [display-slider layout=newspaper content="heading,caption"]
+          https://asunews.asu.edu/taxonomy/term/153/all/feed
+          https://asunews.asu.edu/taxonomy/term/178/all/feed
+          https://asunews.asu.edu/taxonomy/term/358/all/feed
+          https://asunews.asu.edu/taxonomy/term/40/all/feed
         [/display-slider]
       [/display-flex]
     [/display-column]
