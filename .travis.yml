@@ -32,7 +32,7 @@ before_script:
   - export DB_HOST
   - export BASEDIR=`pwd`
   - mkdir -p $WP_DEVELOP_DIR
-  - if [ $WP_VERSION == 'master' ]; then local ARCHIVE_NAME='trunk' else local ARCHIVE_NAME="tags/$WP_VERSION" fi
+  - if [ $WP_VERSION == 'master' ]; then local ARCHIVE_NAME='trunk'; else local ARCHIVE_NAME="tags/$WP_VERSION"; fi
   # Use the Git mirror of WordPress.
   - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
   - svn co http://develop.svn.wordpress.org/${ARCHIVE_NAME}/tests/phpunit/includes/ ${WP_DEVELOP_DIR}includes
