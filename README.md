@@ -52,10 +52,11 @@ Make a Page with the following text in it:
       [display-flex size=3]
         <h2>ASU News</h2>
         [display-slider layout=newspaper content="heading,caption"]
-          https://asunews.asu.edu/taxonomy/term/153/all/feed
-          https://asunews.asu.edu/taxonomy/term/178/all/feed
-          https://asunews.asu.edu/taxonomy/term/358/all/feed
-          https://asunews.asu.edu/taxonomy/term/40/all/feed
+          https://asunow.asu.edu/feeds/renewable-energy 
+          https://asunow.asu.edu/feeds/sustainability%2Cglobal-institute-of
+          https://asunow.asu.edu/feeds/sustainability%2Cschool-of 
+          https://asunow.asu.edu/feeds/sustainability 
+          https://asunow.asu.edu/feeds/sustainability-asu 
         [/display-slider]
       [/display-flex]
     [/display-column]
