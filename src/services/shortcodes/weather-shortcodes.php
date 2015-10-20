@@ -25,7 +25,8 @@ class Weather_Shortcodes extends Hook {
   public function display_weather( $atts, $content = '' ) {
     $atts = shortcode_atts(
         array(
-          'location' => 'tempe, az'
+          'location' => 'tempe, az',
+          'iconset' => 'flat-weather',
         ),
         $atts,
         'apiarium-weather'
@@ -46,10 +47,10 @@ class Weather_Shortcodes extends Hook {
 
     $feed_items = array_splice( $feed_items, 0, self::LIMIT );
 
-    return $this->create_html( $feed_items );
+    return $this->create_html( $feed_items, $atts['iconset'] );
   }
 
-  public function create_html( $feed_items ) {
+  public function create_html( $feed_items, $iconset ) {
     if ( ! empty( $feed_items ) ) {
       $weather = "
       <div class='apiarium__weather'>
@@ -68,10 +69,14 @@ class Weather_Shortcodes extends Hook {
       $forecasts = '';
 
       foreach( $feed_items as $forecast ) {
+        $image = plugins_url(
+            "public/images/{$iconset}/{$forecast->image}",
+            dirname( dirname( dirname( __FILE__ ) ) )
+        );
         $forecasts .= "
         <div class='apiarium__weather__forecast'>
           <h3>{$forecast->title}</h3>
-          <img src='{$forecast->image}' />
+          <img src='{$image}' />
           <p>{$forecast->description}</p>
         </div>
         ";
