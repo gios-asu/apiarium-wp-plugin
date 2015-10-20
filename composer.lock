@@ -46,7 +46,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gios-asu/nectary.git",
-                "reference": "36248ed5d312664d3544278719a29d93290f5074"
+                "reference": "b14e6872a93a6ac2606943390af4414967222cdd"
             },
             "require": {
                 "xamin/handlebars.php": "dev-master"
@@ -81,7 +81,7 @@
                 }
             ],
             "description": "A simple PHP framework that is not tied to a web interface",
-            "time": "2015-10-16 17:48:15"
+            "time": "2015-10-20 22:51:29"
         },
         {
             "name": "xamin/handlebars.php",

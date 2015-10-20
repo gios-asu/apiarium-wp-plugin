@@ -27,11 +27,21 @@ class Twitter_Shortcodes extends Hook {
     $atts = shortcode_atts(
         array(
           'limit' => 15,
-          'search' => '@asugreen'
+          'screenname' => false,
+          'search' => false,
         ),
         $atts,
         'apiarium-twitter'
     );
+
+    $query_type = 'screenname';
+    $query_text = 'asugreen';
+    if ( $atts['screenname'] !== false ) {
+      $query_text = $atts['screenname'];
+    } else if ( $atts['search'] !== false ) {
+      $query_type = 'search';
+      $query_text = $atts['search'];
+    }
 
     $oauth_access_token = Option_Utilities::get_or_default(
         Admin_Panel::OPTIONS_NAME,
@@ -66,7 +76,8 @@ class Twitter_Shortcodes extends Hook {
         array(
             array(
               'type' => 'twitter',
-              'query' => $atts['search'],
+              'query_type' => $query_type,
+              'query' => $query_text,
               'limit' => $atts['limit'],
               'oauth_access_token'        => $oauth_access_token,
               'oauth_access_token_secret' => $oauth_access_token_secret,
@@ -76,11 +87,11 @@ class Twitter_Shortcodes extends Hook {
         )
     );
 
-    return $this->create_html( $feed_items, $atts );
+    return $this->create_html( $feed_items, $atts, $query_text );
   }
 
-  public function create_html( $feed_items, $attributes ) {
-    $query = $attributes['search'];
+  public function create_html( $feed_items, $attributes, $query_text ) {
+    $query = $query_text;
     $limit = $attributes['limit'];
     $html       = "
       <div class='apiarium__tweets' data-query='$query' data-limit='$limit'>
