@@ -87,7 +87,15 @@ have an optional `size` attribute.
 
 #### [display-weather]
 
-The `display-weather` shortcode will display a Yahoo weather widget.
+The `display-weather` shortcode will display a Yahoo weather widget. An optional
+`iconset` can be provided.
+
+```
+[display-weather iconset="flat-weather"]
+```
+
+* iconset (Optional) defaults to `flat-weather`
+    - "flat-weather"
 
 #### [display-twitter]
 

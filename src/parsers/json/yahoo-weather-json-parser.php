@@ -78,10 +78,7 @@ class Yahoo_Weather_Json_Parser {
     if ( empty( $code ) ) {
       return '';
     } else {
-      return plugins_url(
-          "public/images/flat-weather/{$code}.png",
-          dirname( dirname( dirname( __FILE__ ) ) )
-      );
+      return $code . '.png';
     }
   }
 
