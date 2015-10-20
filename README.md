@@ -195,6 +195,18 @@ Install using `composer install`.
 
 Run tests using `vendor/bin/phpunit`.
 
+## Setting Up a Kiosk
+
+1. Get your URL
+2. Open up Chrome's settings.
+3. Under "People" click "Add person..."
+4. Give the new profile a name and picture. Make sure "Create a desktop shortcut for this user" is checked. Click "Create."
+5. Open up your desktop shortcut
+6. Add a Chrome Extension through their Extension Store: Kiosk by Zerbadog
+7. Launch it from Google Chrome
+8. Enter your settings
+
+
 ## Additional Credits
 
 Icons are provided thanks to [MerlinTheRed](http://merlinthered.deviantart.com/art/plain-weather-icons-157162192) under the Creative Commons Attribution-ShareAlike license.
