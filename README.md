@@ -106,8 +106,9 @@ required `search` parameter.
 [display-twitter search="@asugreen"]
 ```
 
-* search (Required)
+* search OR screenname (Required)
     - String
+* 
 
 #### [display-slider]
 
