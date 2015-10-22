@@ -2,6 +2,9 @@
  * Green Theme
  */
 .apiarium__green {
+  background-image: url(../images/backgrounds/green-background.jpg);
+  background-repeat: repeat-x;
+  background-position: left bottom;
   background-color: #DCFFB3;
   padding: 1vh 1vw;
 }
@@ -11,9 +14,13 @@
 }
 
 .apiarium__green .apiarium__flex:not(.apiarium__no-border) {
-  background-color: #568e14;
-  border: #FFB310 5px solid;
+  background-color: rgba(86, 142, 20, 0.53);
+  border:#EBD846 2px solid;
   box-shadow: 2px 2px 5px black;
-  margin: 0.5vh 0.5vw 0;
-  padding: 0.5vh 0.5vw;
+  margin: 0.5vh 0.5vw 1.5vh 0;
+  padding: 1.95vh 1.5vw;
+}
+
+.background-white {
+	background-color: rgba(255, 255, 255, 0) !important;
 }

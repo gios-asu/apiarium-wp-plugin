@@ -121,8 +121,11 @@
 }
 
 .apiarium__slider .item img {
-  max-height: 100%;
   margin: auto;
+  max-height: 100%;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.28);
 }
 
 .apiarium__slider .carousel-caption > *:not(:empty) {
@@ -228,9 +231,19 @@
 
 .apiarium__calendar__time {
   align-self: center;
-  color: #900 !important;
+  color: #990033 !important;
   font-size: 2em;
   font-weight: bold;
   letter-spacing: -.05em;
   padding: 0 20px;  
 }
+
+.background-white {
+	background-color: rgba(255, 255, 255, 0) !important;
+	border:none !important;
+  box-shadow: none !important;
+  margin: 0.5vh 0.5vw 1.5vh 0;
+  padding: 1.5vh 1.5vw;
+}
+
+
