@@ -1,0 +1,265 @@
+/*
+ * Apiarium Styles
+ */
+
+/**
+ * Scaffolding
+ */
+.apiarium__viewport {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.apiarium__viewport p {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.apiarium__viewport h1,
+.apiarium__viewport h2,
+.apiarium__viewport h3 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.apiarium__viewport h1 {
+  font-size: 1.5vw;
+}
+
+.apiarium__viewport h2 {
+  font-size: 22px;
+}
+
+.apiarium__viewport h3 {
+  font-size: 19px;
+}
+
+.apiarium__viewport .apiarium__small-text {
+  font-size: 14px;
+}
+
+/**
+ * Flex Scaffolding
+ */
+.apiarium__row {
+  /* previous syntax */
+  display: -webkit-box;
+  display:    -moz-box;
+  display:     -ms-box;
+  display:         box;
+
+  -webkit-box-orient: horizontal;
+     -moz-box-orient: horizontal;
+      -ms-box-orient: horizontal;
+          box-orient: horizontal;
+
+  /* current syntax */
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: row;
+     -moz-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+
+  margin-right: -25px;
+  width: 100%;
+}
+
+.apiarium__column {
+  /* previous syntax */
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+
+  -webkit-box-orient: vertical;
+     -moz-box-orient: vertical;
+      -ms-box-orient: vertical;
+          box-orient: vertical;
+
+  /* current syntax */
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+  height: 100%;
+  height: calc( 100% - 2vh );
+  margin-right: 25px;
+}
+
+.apiarium__flex {
+  display: flex;
+  flex-flow: column;
+}
+
+/**
+ * Layout Scaffolding
+ */
+.apiarium__newspaper__image {
+  margin: 25px 25px 0 0;
+  width: 25%;
+}
+
+/**
+ * Carousel
+ */
+.apiarium__slider {
+  width: 100%;
+}
+
+.apiarium__slider .carousel {
+  max-height: 100%;
+}
+
+.apiarium__slider .item {
+  overflow: hidden;
+}
+
+.apiarium__slider .item img {
+  margin: auto;
+  max-height: 100%;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.28);
+}
+
+.apiarium__slider .carousel-caption > *:not(:empty) {
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  display: inline-block;
+  padding: 10px;
+}
+
+/**
+ * Components
+ */
+.apiarium__flex img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+
+.apiarium__flex > img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.apiarium__weather__forecast {
+  float: left;
+  text-align: center;
+  width: 22%;
+}
+
+.apiarium__weather__forecast img {
+  width: 80%;
+}
+
+.apiarium__weather__forecast:first-child {
+  width: 34%;
+}
+
+.apiarium__weather__forecast:first-child img {
+  width: 100%;
+}
+
+.apiarium__weather__forecast:first-child h3 {
+  display: none;
+}
+
+.apiarium__weather__forecast:first-child p {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.apiarium__tweets {
+  overflow: hidden;
+  position: relative;
+}
+
+.apiarium__tweets > ul {
+  left: 0;
+  list-style: none;
+  padding-left: 0;
+  position: relative;
+  top: 0;
+  z-index: 1;
+}
+
+
+.apiarium__tweet .apiarium__tweet__image img {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.apiarium__tweet .apiarium__tweet__date {
+  float: right;
+  margin-left: 10px;
+}
+
+.apiarium__calendar {
+  justify-content: center;
+  overflow: hidden;
+
+  flex-flow: row;
+  flex: 1;
+  display: flex;
+}
+
+.apiarium__calendar__date {
+  align-self: center;
+  padding: 0 20px;
+}
+
+.apiarium__calendar__date__icon {
+  background-color: #fff;
+  border: #EBD846 2px solid;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  overflow: hidden;  
+}
+.apiarium__calendar__date__icon * {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.apiarium__calendar__date__icon__month {
+  background-color: rgba(86, 142, 20, 0.83);
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.apiarium__calendar__date__icon__date {
+  color: rgba(52, 56, 47, 0.83) !important;
+  font-size: 2.5em;
+  letter-spacing: -.05em;
+}
+
+.apiarium__calendar__time {
+  align-self: center;
+  color: #990033 !important;
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: -.05em;
+  padding: 0 20px;  
+}
+
+.background-white {
+	background-color: rgba(255, 255, 255, 0) !important;
+	border:none !important;
+  box-shadow: none !important;
+  margin: 0.5vh 0.5vw 1.5vh 0;
+  padding: 1.5vh 1.5vw;
+}
+
+
