@@ -2,9 +2,9 @@
  * Green Theme
  */
 .apiarium__blue {
-background-image: url(../images/backgrounds/blue-background.jpg);
- background-repeat: repeat-x;
- background-position: left bottom;
+  background-image: url(../images/backgrounds/blue-background.jpg);
+  background-repeat: repeat-x;
+  background-position: left bottom;
   background-color: #C4F2FF;
   padding: 1vh 1vw;
 }
