@@ -41,7 +41,7 @@ class Asu_Now_Xml_Parser {
       $feed_item->id          = $item['id'];
       $feed_item->title       = $item['title'];
       $feed_item->image       = $item['image'];
-      $feed_item->description = $formatted_date . '<br/><br/>' . $item['description'];
+      $feed_item->description = '<p class="apiarium__small-text">' . $formatted_date . '</p>' . $item['description'];
       $feed_item->post_date   = $item['post_date'];
 
       $feed_items[] = $feed_item;
