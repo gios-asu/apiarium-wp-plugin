@@ -42,6 +42,34 @@ class Parser_Register extends Register {
 
     // TODO limit
 
+    $short_name_for_urls = self::generate_short_name( $urls );
+
+    $feed_items = self::check_and_update_cache( $feed_items, $short_name_for_urls );
+
     return $feed_items;
+  }
+
+  private static function generate_short_name( $urls ) {
+    $joined = join( '', $urls );
+
+    return 'apiarium__' . md5( $joined );
+  }
+
+  private static function check_and_update_cache( $feed_items, $transient_name ) {
+    if ( count( $feed_items ) === 0 ) {
+      // Get the old transient
+      $transient = get_transient( $transient_name );
+
+      if ( $transient === false ) {
+        return $feed_items;
+      } else {
+        // If there is an old transient, use that data
+        return $transient;
+      }      
+    } else {
+      // Update the transient
+      set_transient( $transient_name, $feed_items, 24 * 60 * 60 * 1000 /* 1 day */ );
+      return $feed_items;
+    }
   }
 }
