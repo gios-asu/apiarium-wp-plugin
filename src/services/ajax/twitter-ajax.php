@@ -21,10 +21,17 @@ class Twitter_Ajax extends Hook {
 
     $data = json_decode( stripslashes( $_REQUEST['serialized'] ), true );
 
-    $search = $data['query'];
-    $limit = $data['limit'];
+    $query     = $data['query'];
+    $queryType = $data['queryType'];
+    $limit     = $data['limit'];
 
-    $twitter_html = do_shortcode( "[display-twitter search='{$search}' limit='{$limit}']" );
+    if ($queryType === 'screenname') {
+      $search = " screenname='{$query}' ";
+    } else {
+      $search = " search='{$query}' ";
+    }
+
+    $twitter_html = do_shortcode( "[display-twitter {$search} limit='{$limit}']" );
 
     wp_send_json_success( array(
         'script_response' => $twitter_html,
