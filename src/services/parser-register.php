@@ -50,7 +50,17 @@ class Parser_Register extends Register {
   }
 
   private static function generate_short_name( $urls ) {
-    $joined = join( '', $urls );
+    $stringified = array_map( function ( $url ) {
+      if ( is_string( $url ) ) {
+        return $url;
+      } else if ( is_object( $url ) ) {
+        return json_encode( $url );
+      } else {
+        return '';
+      }
+    }, $urls );
+
+    $joined = join( '', $stringified );
 
     return 'apiarium__' . md5( $joined );
   }
