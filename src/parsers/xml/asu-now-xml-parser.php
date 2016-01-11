@@ -38,11 +38,11 @@ class Asu_Now_Xml_Parser {
       $formatted_date = strtotime( $formatted_date );
       $formatted_date = date( 'F j, Y', $formatted_date );
 
-      $feed_item->id          = $item['id'];
-      $feed_item->title       = $item['title'];
-      $feed_item->image       = $item['image'];
+      $feed_item->id          = (string) $item['id'];
+      $feed_item->title       = (string) $item['title'];
+      $feed_item->image       = (string) $item['image'];
       $feed_item->description = '<p class="apiarium__small-text">' . $formatted_date . '</p>' . $item['description'];
-      $feed_item->post_date   = $item['post_date'];
+      $feed_item->post_date   = (string) $item['post_date'];
 
       $feed_items[] = $feed_item;
     }

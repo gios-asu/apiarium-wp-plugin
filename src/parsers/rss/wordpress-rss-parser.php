@@ -35,8 +35,6 @@ class Wordpress_Rss_Parser {
     return false;
   }
 
-  // TODO remove the "The post XYZ appeared first on ABC" text from
-  // the description
   public function parse( $url ) {
     // Don't worry about refetching RSS feeds, they are cached by
     // WordPress 
@@ -48,10 +46,14 @@ class Wordpress_Rss_Parser {
     foreach ( $items as $item ) {
       $feed_item = new Feed_Item();
 
+      $description = $item->get_description();
+
+      $description = preg_replace('/(The post <a).*(<\/a>.?)/s', '', $description);
+
       // Title + Date should be a good enough ID
       $feed_item->id          = $item->get_title() . '-' . $item->get_date();
       $feed_item->title       = $item->get_title();
-      $feed_item->description = $item->get_description();
+      $feed_item->description = $description;
       $feed_item->post_date   = $item->get_date();
       $feed_item->image       = $this->get_image( $item );
 

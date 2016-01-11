@@ -7,12 +7,9 @@
     var timer = 20000; /* 20 seconds */
 
     +function setUpReset() {
-      setTimeout( function resetAtMidnight() {
-        var hour = ( new Date() ).getHours();
-        if ( 0 <= hour && hour < 1 ) {
-          location.reload();
-        }
-      }, 1 * 60 * 60 * 1000 /* 1 hour */ );
+      setTimeout( function resetEveryTwoHours() {
+        location.reload();
+      }, 2 * 60 * 60 * 1000 /* 2 hour */ );
     }();
 
     +function setUpNoInteraction() {
@@ -37,6 +34,12 @@
         } );
 
         el.css( 'height', height + 'px' );
+
+        var wordArray = e.innerHTML.split(' ');
+        while(e.scrollHeight > e.offsetHeight && wordArray.length > 0) {
+          wordArray.pop();
+          e.innerHTML = wordArray.join(' ') + '...';
+        }
       } );
     }();
 
@@ -114,19 +117,17 @@
       }, timer );
 
       setInterval( function updateTweets() {
-        var siteUrl = $(window.location).attr('href');
-
-        siteUrl += 'apiarium/twitter';
-
         $('.apiarium__tweets').each( function updateEachTweetSection( i, e ) {
-          var query = $( e ).attr( 'data-query' );
-          var limit = $( e ).attr( 'data-limit' );
+          var query     = $( e ).attr( 'data-query' );
+          var queryType = $( e ).attr( 'data-query-type' );
+          var limit     = $( e ).attr( 'data-limit' );
 
           var post_data = { 
             action     : 'apiarium-twitter',
             nonce      : apiarium.nonce,
             serialized : JSON.stringify({
               query : query,
+              queryType: queryType,
               limit : limit
             }),
           };
