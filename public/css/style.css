@@ -222,7 +222,6 @@
 
 .apiarium__calendar__date__icon {
   background-color: #fff;
-  border: #EBD846 2px solid;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   overflow: hidden;  
 }
@@ -261,5 +260,3 @@
   margin: 0.5vh 0.5vw 1.5vh 0;
   padding: 1.5vh 1.5vw;
 }
-
-
