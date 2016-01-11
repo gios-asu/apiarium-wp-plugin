@@ -34,6 +34,12 @@
         } );
 
         el.css( 'height', height + 'px' );
+
+        var wordArray = e.innerHTML.split(' ');
+        while(e.scrollHeight > e.offsetHeight && wordArray.length > 0) {
+          wordArray.pop();
+          e.innerHTML = wordArray.join(' ') + '...';
+        }
       } );
     }();
 
