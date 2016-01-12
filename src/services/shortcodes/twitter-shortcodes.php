@@ -87,14 +87,14 @@ class Twitter_Shortcodes extends Hook {
         )
     );
 
-    return $this->create_html( $feed_items, $atts, $query_text );
+    return $this->create_html( $feed_items, $atts, $query_text, $query_type );
   }
 
-  public function create_html( $feed_items, $attributes, $query_text ) {
+  public function create_html( $feed_items, $attributes, $query_text, $query_type ) {
     $query = $query_text;
     $limit = $attributes['limit'];
     $html       = "
-      <div class='apiarium__tweets' data-query='$query' data-limit='$limit'>
+      <div class='apiarium__tweets' data-query='$query' data-query-type='$query_type' data-limit='$limit'>
         <ul>
           %s
         </ul>

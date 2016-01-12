@@ -17,6 +17,11 @@ Television Screen and Kiosk WordPress Plugin
 * You should now have a tab on the dashboard menu labeled "Kiosk Settings"
 * If you want to use Twitter feeds, you will need to add your Twitter API token
 
+Note: If you are planning on using your own Wordpress feed to power the Kiosk,
+you will need to make sure that the tag and category base urls are set:
+
+![Tag setup](documentation/images/apiarium-tag-setup.png)
+
 ## Shortcodes
 
 The following shortcodes are available through this plugin
