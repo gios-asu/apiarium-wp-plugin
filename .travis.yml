@@ -1,25 +1,19 @@
 language: php
-
 php:
-  - 5.5.9
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
+  - '5.5'
+  - '5.6'
+  - '7.0'
 
 env:
   # Trunk
   # @link https://github.com/WordPress/WordPress
   - WP_VERSION=master WP_MULTISITE=0
   - WP_VERSION=master WP_MULTISITE=1
-  # WordPress 4.2
-  # @link https://github.com/WordPress/WordPress/tree/4.2-branch
-  - WP_VERSION=4.2 WP_MULTISITE=0
-  - WP_VERSION=4.2 WP_MULTISITE=1
-  # WordPress 4.1
-  # @link https://github.com/WordPress/WordPress/tree/4.1-branch
-  - WP_VERSION=4.1 WP_MULTISITE=0
-  - WP_VERSION=4.1 WP_MULTISITE=1
+
+  # WordPress 4.4
+  # @link https://github.com/WordPress/WordPress/tree/4.4-branch
+  - WP_VERSION=4.4 WP_MULTISITE=0
+  - WP_VERSION=4.4 WP_MULTISITE=1
 
 install:
   - composer install --no-interaction --prefer-source
