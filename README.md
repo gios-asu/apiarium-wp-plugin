@@ -11,11 +11,33 @@ Television Screen and Kiosk WordPress Plugin
 
 ## Installation
 
-* Clone the repo into your `wp-plugins` directory
-* Run `composer install --no-dev` in the root of the plugin, ex: `cd wp-plugins/apiarium-wp-plugin; composer install`
-* Activate on your WordPress dashboard
-* You should now have a tab on the dashboard menu labeled "Kiosk Settings"
-* If you want to use Twitter feeds, you will need to add your Twitter API token
+#### Step 1: Get the plugin
+
+You can either `git clone` this repo or download the [latest release as a ZIP](https://github.com/gios-asu/apiarium-wp-plugin/releases/latest). 
+
+#### Step 2: Put the plugin in your plugins folder
+
+Put the unzipped folder into your `wp-plugins` or `plugins` directory
+
+#### Step 3: Install the dependencies
+
+You will need [Git](http://www.git-scm.com/) and [composer](https://getcomposer.org/doc/00-intro.md) in order to install the dependencies for this plugin.
+
+Run `composer install --no-dev` in the root of the plugin, for example:
+
+```sh
+cd wp-plugins/apiarium-wp-plugin; composer install
+```
+
+#### Step 4: Activate the plugin
+
+Activate on your WordPress dashboard. You should now have a tab on the dashboard menu labeled "Kiosk Settings"
+
+#### Step 5 (Optional): Set up Twitter feeds
+
+If you want to use Twitter feeds, you will need to add your Twitter API tokens to the Kiosk Settings tab.
+
+#### Step 6 (Optional): Set up WordPress feeds
 
 Note: If you are planning on using your own Wordpress feed to power the Kiosk,
 you will need to make sure that the tag and category base urls are set:
@@ -113,7 +135,8 @@ required `search` parameter.
 
 * search OR screenname (Required)
     - String
-* 
+
+If you use `[display-twitter search="sustainability"]`, then tweets that contain "sustainability" will be displayed. If you use `[display-twitter screenname"sustainability"]`, then the Twitter user's timeline will be pulled.
 
 #### [display-slider]
 
@@ -195,22 +218,17 @@ Make a Page with the following text in it:
 
 * `/tag/test/feed/` will pull in posts from your blog with the `test` tag.
 
+
+## Setting Up a Kiosk
+
+We recommend using the Chrome Extension "Kiosk" by Zerbadog via the Extension Store.
+
 ## Development
 
 Install using `composer install`.
 
 Run tests using `vendor/bin/phpunit`.
 
-## Setting Up a Kiosk
-
-1. Get your URL
-2. Open up Chrome's settings.
-3. Under "People" click "Add person..."
-4. Give the new profile a name and picture. Make sure "Create a desktop shortcut for this user" is checked. Click "Create."
-5. Open up your desktop shortcut
-6. Add a Chrome Extension through their Extension Store: Kiosk by Zerbadog
-7. Launch it from Google Chrome
-8. Enter your settings
 
 
 ## Additional Credits
