@@ -37,7 +37,9 @@ class Javascript_Enqueue extends Hook {
   */
   function enqueue_scripts() {
     if ( is_page_template ( Page_Templates::TEMPLATE_NAME ) ) {
-      wp_enqueue_script( $this->plugin_slug, $this->javascript, array( 'jquery' ), $this->version );
+      wp_enqueue_script( 'jquery-cdn', 'http://code.jquery.com/jquery-1.12.0.min.js', array(), '1.12.0', true );
+      wp_enqueue_script( 'bootstrap-cdn', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array( 'jquery-cdn' ), '3.3.6', true );
+      wp_enqueue_script( $this->plugin_slug, $this->javascript, array( 'jquery-cdn', 'bootstrap-cdn' ), $this->version, true );
       wp_localize_script(
           $this->plugin_slug,
           'apiarium',
