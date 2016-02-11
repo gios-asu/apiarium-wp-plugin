@@ -52,18 +52,20 @@
     
     +function setUpTweets() {
       setInterval( function animateTweets() {
-        $( '.apiarium__tweet' ).first()
-        .each( function animate ( i, e ) {
-          $(e).animate(
-            {
-              'margin-top': - $(e).height() + 'px'
-            },
-            'slow',
-            function after() {
-              $( this).parent().append( $(this ) );
-              $( this ).css( 'margin-top', '0px' );
-            }
-          );
+        $( '.apiarium__tweets' ).each( function ( _, tweetContainer ) {
+          $( tweetContainer ).find( '.apiarium__tweet' ).first()
+            .each( function animate ( i, e ) {
+            $(e).animate(
+              {
+                'margin-top': - $(e).height() + 'px'
+              },
+              'slow',
+              function after() {
+                $( e ).parent().append( $( e ) );
+                $( e ).css( 'margin-top', '0px' );
+              }
+            );
+          } );
         } );
       }, timer );
 
