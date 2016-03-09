@@ -165,6 +165,7 @@ inbetween each one.
         * heading
         * caption
         * image
+        * html
 
 ## Example Page
 

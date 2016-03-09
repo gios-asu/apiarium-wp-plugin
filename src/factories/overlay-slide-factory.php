@@ -11,6 +11,7 @@ use Nectary\Factories\Html_Slide_Factory;
 class Overlay_Slide_Factory extends Html_Slide_Factory {
   private $image;
   private $caption;
+  protected $html;
 
   /**
    * @override
@@ -33,11 +34,18 @@ class Overlay_Slide_Factory extends Html_Slide_Factory {
     $this->image = $this->with_image( $html, $options );
   }
 
+  public function add_div( $html, $options = [] ) {
+    $this->html = $this->with_div( $html, $options );
+  }
+
   /**
    * @override
    */
   public function build() {
-    $this->html = "{$this->image}<div class='carousel-caption'>{$this->caption}</div>";
+    if ( empty( $this->html ) ) {
+      $this->html = "{$this->image}<div class='carousel-caption'>{$this->caption}</div>";
+    }
+
     return parent::build();
   }
 }

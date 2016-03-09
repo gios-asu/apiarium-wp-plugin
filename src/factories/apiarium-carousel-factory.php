@@ -33,6 +33,7 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
     $this->include_heading     = false;
     $this->include_caption     = false;
     $this->include_image       = false;
+    $this->include_html        = false;
   }
 
   /**
@@ -69,6 +70,13 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
    */
   public function set_include_image( $include = true ) {
     $this->include_image = $include;
+  }
+
+  /**
+   * Set whether to include the description as html
+   */
+  public function set_include_html( $include = true ) {
+    $this->include_html = $include;
   }
 
   /**
@@ -125,6 +133,12 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
       $slide->add_image(
           $feed_item->image
       );  
+    }
+
+    if ( $this->include_html ) {
+      $slide->add_div(
+         $feed_item->description 
+      );
     }
 
     return $slide->build();

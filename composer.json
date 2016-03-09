@@ -22,9 +22,8 @@
         }
     ],
     "require": {
-        "gios-asu/nectary": "dev-ivan-develop",
-        "gios-asu/honeycomb": "dev-ivan-develop",
-        "xamin/handlebars.php": "dev-master"
+        "gios-asu/nectary": "^0.1.3",
+        "gios-asu/honeycomb": "^1.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*",
