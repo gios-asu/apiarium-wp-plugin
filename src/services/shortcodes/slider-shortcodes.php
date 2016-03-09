@@ -115,7 +115,8 @@ class Slider_Shortcodes extends Hook {
     $cleaned = [];
 
     foreach ( $urls as $url ) {
-      $url = trim( $url );
+      $url = trim( str_replace( array( "\n\r", "\n", "\r", '<br />', '<br/>' ), '', $url ) );
+
       if ( ! empty( $url ) ) {
         // If the url begins with a slash, than it is absolute
         // to the current blog
