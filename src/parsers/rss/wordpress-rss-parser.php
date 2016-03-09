@@ -46,7 +46,16 @@ class Wordpress_Rss_Parser {
     foreach ( $items as $item ) {
       $feed_item = new Feed_Item();
 
-      $description = $item->get_description();
+      // Don't use get_description() or get_content() for getting
+      // the content since it will strip tags out
+      $raw = $item->get_item_tags(
+          '',
+          'description'
+      );
+
+      if ( ! empty( $raw ) ) {
+        $description = $raw[0]['data'];
+      }
 
       $description = preg_replace('/(The post <a).*(<\/a>.?)/s', '', $description);
 

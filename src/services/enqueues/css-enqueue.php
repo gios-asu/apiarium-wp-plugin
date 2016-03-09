@@ -18,7 +18,7 @@ class Css_Enqueue extends Hook {
   // TODO inject the version
   public function __construct() {
     $this->plugin_slug = 'apiarium-css-styles';
-    $this->version     = '0.2';
+    $this->version     = '0.3';
     $this->css         = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/css/style.css';
     $this->green_theme = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/css/green-theme.css';
     $this->blue_theme  = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/css/blue-theme.css';

@@ -32,7 +32,15 @@ class Calendar_Shortcodes extends Hook {
           </div>
         </div>
 HTML;
-    date_default_timezone_set( 'America/Phoenix' );
+    $timezone = get_option( 'timezone_string' );
+
+    // If the admin has never set their timezone before, then the
+    // given timezone is empty. We'll default to our timezone.
+    if ( empty( $timezone ) ) {
+      $timezone = 'America/Phoenix';
+    }
+
+    date_default_timezone_set( $timezone );
     $month                = date( 'M' );
     $day_of_the_month     = date( 'd' );
     $current_time         = date( 'g:i A' );

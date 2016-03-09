@@ -11,11 +11,24 @@ if ( ! defined( 'APIARIUM_WP_VERSION' ) ) {
   exit();
 }
 
+function enqueue_head() {
+  echo '<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+  crossorigin="anonymous">';
+}
+
+add_action('wp_head', 'enqueue_head');
+
 wp_head(); ?>
+
+
 
 <div class="apiarium__viewport">
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
     the_content();
 endwhile; endif; ?>
 </div>
+
 <?php wp_footer();

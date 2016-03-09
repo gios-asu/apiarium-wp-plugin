@@ -5,6 +5,7 @@ namespace Apiarium\Services;
 use Honeycomb\Wordpress\Hook;
 use Honeycomb\Facades\Wordpress_Rss_Facade;
 use Apiarium\Factories\Apiarium_Carousel_Factory;
+use Apiarium\Factories\Html_Slide_Factory;
 use Apiarium\Factories\Overlay_Slide_Factory;
 use Apiarium\Factories\Newspaper_Slide_Factory;
 
@@ -23,7 +24,7 @@ class Slider_Shortcodes extends Hook {
   public function define_hooks() {
     $this->add_shortcode( 'display-slider', $this, 'display_slider' );
     $this->add_filter( 'wp_feed_cache_transient_lifetime', $this, 'lifetime' );
-    $this->add_action(  'wp_feed_options', $this, 'do_not_cache_feeds' );
+    $this->add_action( 'wp_feed_options', $this, 'do_not_cache_feeds' );
   }
 
   /**
@@ -92,6 +93,9 @@ class Slider_Shortcodes extends Hook {
         break;
       case 'image':
         $factory->set_include_image( true );
+        break;
+      case 'html':
+        $factory->set_include_html( true );
         break;
       }
     }
