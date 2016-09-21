@@ -148,7 +148,7 @@ Put your feed links between the opening and closing shortcode tags, with a new l
 inbetween each one.
 
 ```
-[display-slider layout=newspaper content="heading,caption"]
+[display-slider layout=newspaper content="heading,caption" limit=10]
   https://asunow.asu.edu/feeds/renewable-energy 
   https://asunow.asu.edu/feeds/sustainability%2Cglobal-institute-of
   https://asunow.asu.edu/feeds/sustainability%2Cschool-of 
@@ -166,6 +166,8 @@ inbetween each one.
         * caption
         * image
         * html
+* limit (Optional) defaults to 15
+    - How many items to show in the slider
 
 ## Example Page
 
