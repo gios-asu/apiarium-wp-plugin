@@ -29,8 +29,6 @@ class Flickr_Rss_Parser {
   public function can_parse( $url ) {
     if ( is_string( $url ) ) {
       if ( strpos( $url, self::FLICKR_URL ) !== false ) {
-
-        error_log( print_r($url, true) );
         if ( $feed = $this->get_feed( $url ) ) {
           if ( $feed instanceof Rss_Feed ) {
             return true;
