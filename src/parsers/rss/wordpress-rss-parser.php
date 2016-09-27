@@ -22,7 +22,7 @@ class Wordpress_Rss_Parser {
           if ( $feed instanceof Rss_Feed ) {
             if ( ! empty( $feed->get_items() ) ) {
               //if ( ! empty( $feed->get_items()[0]->get_item_tags( self::PURL_RSS, 'encoded' ) ) ) {
-                return true;  
+                return true;
               //}
             }
           }
@@ -37,7 +37,7 @@ class Wordpress_Rss_Parser {
 
   public function parse( $url ) {
     // Don't worry about refetching RSS feeds, they are cached by
-    // WordPress 
+    // WordPress
     //
     // TODO Ivan disabled caching, so we should actually care about this now!
     $items      = $this->get_items( $url );
@@ -68,7 +68,7 @@ class Wordpress_Rss_Parser {
 
       $feed_items[] = $feed_item;
     }
-    
+
     return $feed_items;
   }
 
@@ -126,7 +126,7 @@ class Wordpress_Rss_Parser {
     try {
       $feed->retrieve_items();
     } catch ( \Exception $e ) {
-      error_log( 'Could not load WordPress RSS Feed' );
+      error_log( 'Could not load WordPress RSS Feed: '.$url.' : '.$e->getMessage() );
       return;
     }
 
