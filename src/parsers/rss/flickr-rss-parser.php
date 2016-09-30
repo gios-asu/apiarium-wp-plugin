@@ -101,7 +101,7 @@ class Flickr_Rss_Parser {
     try {
       $feed->retrieve_items();
     } catch ( Exception $e ) {
-      error_log( 'Could not load Flickr RSS Feed' );
+      error_log( 'Could not load Flickr RSS Feed: '.$url.' : '.$e->getMessage() );
       return;
     }
 
