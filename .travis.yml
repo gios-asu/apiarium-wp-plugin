@@ -4,15 +4,21 @@ php:
   - '5.6'
   - '7.0'
 
+# Cache composer
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
 env:
   # Trunk
   # @link https://github.com/WordPress/WordPress
   - WP_VERSION=master WP_MULTISITE=0
-  - WP_VERSION=master WP_MULTISITE=1
+#  - WP_VERSION=master WP_MULTISITE=1
 
   # WordPress 4.6
   # @link https://github.com/WordPress/WordPress/tree/4.6-branch
-  - WP_VERSION=4.6 WP_MULTISITE=0
+#  - WP_VERSION=4.6 WP_MULTISITE=0
   - WP_VERSION=4.6 WP_MULTISITE=1
 
 install:
