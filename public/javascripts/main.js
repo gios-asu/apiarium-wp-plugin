@@ -44,10 +44,11 @@
     }();
 
     +function setUpCarousels() {
-      $( '.carousel' ).carousel( {
-        pause: 'false',
-        interval: timer
-      } );
+      $('.carousel').carousel({
+        pause: null,
+        interval: 5000,
+        keyboard: false
+      });
     }();
     
     +function setUpTweets() {
