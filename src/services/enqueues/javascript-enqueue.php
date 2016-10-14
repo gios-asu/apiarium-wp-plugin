@@ -19,7 +19,7 @@ class Javascript_Enqueue extends Hook {
   // TODO inject the version
   public function __construct() {
     $this->plugin_slug = 'apiarium-javascript-styles';
-    $this->version     = '0.1';
+    $this->version     = '0.1.2';
     $this->javascript  = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'public/javascripts/main.js';
 
     $this->define_hooks();
@@ -37,9 +37,9 @@ class Javascript_Enqueue extends Hook {
   */
   function enqueue_scripts() {
     if ( is_page_template ( Page_Templates::TEMPLATE_NAME ) ) {
-      wp_enqueue_script( 'jquery-cdn', 'https://code.jquery.com/jquery-1.12.0.min.js', array(), '1.12.0', true );
-      wp_enqueue_script( 'bootstrap-cdn', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array( 'jquery-cdn' ), '3.3.6', true );
-      wp_enqueue_script( $this->plugin_slug, $this->javascript, array( 'jquery-cdn', 'bootstrap-cdn' ), $this->version, true );
+      wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array(), '1.12.4', true );
+      wp_enqueue_script( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array( 'jquery' ), '3.3.7', true );
+      wp_enqueue_script( $this->plugin_slug, $this->javascript, array( 'jquery', 'bootstrap' ), $this->version, true );
       wp_localize_script(
           $this->plugin_slug,
           'apiarium',

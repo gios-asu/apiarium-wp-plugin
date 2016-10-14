@@ -13,7 +13,7 @@ Television Screen and Kiosk WordPress Plugin
 
 #### Step 1: Get the plugin
 
-You can either `git clone` this repo or download the [latest release as a ZIP](https://github.com/gios-asu/apiarium-wp-plugin/releases/latest). 
+You can either `git clone` this repo or download the [latest release as a ZIP](https://github.com/gios-asu/apiarium-wp-plugin/releases/latest).
 
 #### Step 2: Put the plugin in your plugins folder
 
@@ -69,7 +69,7 @@ use this shortcode to have many rows of content show up on the screen. The rows
 will self-organize to all fit onto the screen at the same time. It has an optional
 `size` parameter that helps determine how much of the screen the row should take up.
 
-For example, if you have two `display-row`s next to each other, and one has a 
+For example, if you have two `display-row`s next to each other, and one has a
 `size` of `1` and the other, a `size` of `2`, the rows will take up the full
 height of the screen, with a ratio of `1:2` between the rows. So the first row will
 take up one-third of the screen and the second row will take up two-thirds of the screen.
@@ -136,7 +136,7 @@ required `search` parameter.
 * search OR screenname (Required)
     - String
 
-If you use `[display-twitter search="sustainability"]`, then tweets that contain "sustainability" will be displayed. If you use `[display-twitter screenname"sustainability"]`, then the Twitter user's timeline will be pulled.
+If you use `[display-twitter search="sustainability"]`, then tweets that contain "sustainability" will be displayed. If you use `[display-twitter screenname="sustainability"]`, then the Twitter user's timeline will be pulled.
 
 #### [display-slider]
 
@@ -145,15 +145,15 @@ in a Bootstrap slider! It supports ASU Now XML feeds, WordPress RSS feeds, and a
 other type of RSS2 feed.
 
 Put your feed links between the opening and closing shortcode tags, with a new line
-inbetween each one.
+in between each one.
 
 ```
-[display-slider layout=newspaper content="heading,caption" limit=10]
-  https://asunow.asu.edu/feeds/renewable-energy 
+[display-slider layout=newspaper content="heading,caption" limit=10 interval=5]
+  https://asunow.asu.edu/feeds/renewable-energy
   https://asunow.asu.edu/feeds/sustainability%2Cglobal-institute-of
-  https://asunow.asu.edu/feeds/sustainability%2Cschool-of 
-  https://asunow.asu.edu/feeds/sustainability 
-  https://asunow.asu.edu/feeds/sustainability-asu 
+  https://asunow.asu.edu/feeds/sustainability%2Cschool-of
+  https://asunow.asu.edu/feeds/sustainability
+  https://asunow.asu.edu/feeds/sustainability-asu
 [/display-slider]
 ```
 
@@ -168,6 +168,8 @@ inbetween each one.
         * html
 * limit (Optional) defaults to 15
     - How many items to show in the slider
+* interval (Optional) defaults to 5 seconds
+    - How long to show each slide
 
 ## Example Page
 
@@ -207,11 +209,11 @@ Make a Page with the following text in it:
       [display-flex size=3]
         <h2>ASU News</h2>
         [display-slider layout=newspaper content="heading,caption"]
-          https://asunow.asu.edu/feeds/renewable-energy 
+          https://asunow.asu.edu/feeds/renewable-energy
           https://asunow.asu.edu/feeds/sustainability%2Cglobal-institute-of
-          https://asunow.asu.edu/feeds/sustainability%2Cschool-of 
-          https://asunow.asu.edu/feeds/sustainability 
-          https://asunow.asu.edu/feeds/sustainability-asu 
+          https://asunow.asu.edu/feeds/sustainability%2Cschool-of
+          https://asunow.asu.edu/feeds/sustainability
+          https://asunow.asu.edu/feeds/sustainability-asu
         [/display-slider]
       [/display-flex]
     [/display-column]

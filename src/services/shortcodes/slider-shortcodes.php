@@ -51,7 +51,8 @@ class Slider_Shortcodes extends Hook {
         array(
             'limit'   => 15,
             'content' => 'image,caption,heading',
-            'layout'  => 'overlay'
+            'layout'  => 'overlay',
+            'interval' => null
         ),
         $atts,
         'apiarium-slider'
@@ -71,6 +72,10 @@ class Slider_Shortcodes extends Hook {
     $carousel_factory->set_slide_factory(
         $this->get_slide_factory( $atts['layout'] )
     );
+
+    if( ! empty( $atts['interval'] ) ) {
+      $carousel_factory->set_slide_interval( $atts['interval'] );
+    }
 
     // TODO pass the limit to the Parser_Register
     // $carousel_factory->set_limit( $atts['limit'] );
@@ -116,7 +121,7 @@ class Slider_Shortcodes extends Hook {
 
     foreach ( $urls as $url ) {
       $url = trim( str_replace( array( "\n\r", "\n", "\r", '<br />', '<br/>' ), '', $url ) );
-
+      $url = html_entity_decode( $url ); // this gets the &#038; -> & and other html encoded characters 
       if ( ! empty( $url ) ) {
         // If the url begins with a slash, than it is absolute
         // to the current blog

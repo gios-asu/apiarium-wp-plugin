@@ -9,7 +9,7 @@ use Apiarium\Models\Feed_Item;
 
 /**
  * Special Carousel builder for Apiarium
- * 
+ *
  * This builder knows how to build generic slides for the
  * carousel.
  */
@@ -19,6 +19,8 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
   private $include_heading;
   private $include_caption;
   private $include_image;
+  private $slide_interval;
+
 
   /**
    * Setup defaults
@@ -34,6 +36,7 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
     $this->include_caption     = false;
     $this->include_image       = false;
     $this->include_html        = false;
+    $this->slide_interval      = null;
   }
 
   /**
@@ -41,7 +44,7 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
    *
    * Defaults to the Html_Slide_Factory, which is not
    * always desired
-   * 
+   *
    * @param $slide_factory_class String
    */
   public function set_slide_factory( $slide_factory_class ) {
@@ -80,8 +83,16 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
   }
 
   /**
+   * Set the number of seconds to give each slide
+   */
+  public function set_slide_interval( $seconds = 5 ) {
+    $this->slide_interval = $seconds * 1000; // Bootstrap expects milliseconds
+  }
+
+
+  /**
    * Create the slider.
-   * 
+   *
    * @return String html
    */
   public function build() {
@@ -111,9 +122,9 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
     $slide = new $this->slide_factory_class();
 
     if ( $is_active ) {
-      $slide->is_active();  
+      $slide->is_active();
     }
-    
+
     if ( $this->include_heading ) {
       $slide->add_heading(
           $feed_item->title,
@@ -122,7 +133,7 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
           )
       );
     }
-    
+
     if ( $this->include_caption ) {
       $slide->add_text(
           $feed_item->description
@@ -132,12 +143,12 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
     if ( $this->include_image ) {
       $slide->add_image(
           $feed_item->image
-      );  
+      );
     }
 
     if ( $this->include_html ) {
       $slide->add_div(
-         $feed_item->description 
+         $feed_item->description
       );
     }
 
@@ -145,10 +156,15 @@ class Apiarium_Carousel_Factory extends Html_Carousel_Factory {
   }
 
   private function build_carousel( $slides ) {
+
     $carousel = new Html_Carousel_Factory();
 
     foreach ( $slides as $slide ) {
       $carousel->add_slide( $slide );
+    }
+
+    if( ! empty($this->slide_interval) ) {
+      $carousel->add_data_attributes( "data-interval='{$this->slide_interval}' ");
     }
 
     return $carousel->build();

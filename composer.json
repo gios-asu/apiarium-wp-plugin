@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "gios-asu/nectary": "^0.1.3",
+        "gios-asu/nectary": "^0.1.9",
         "gios-asu/honeycomb": "^1.0.0"
     },
     "require-dev": {
