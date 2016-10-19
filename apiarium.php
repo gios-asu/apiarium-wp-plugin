@@ -3,7 +3,7 @@
 Plugin Name: Apiarium WordPress Plugin
 Plugin URI: http://github.com/gios-asu/apiarium-wp-plugin
 Description: Television Screen and Kiosk WordPress Plugin
-Version: 2.1
+Version: 2.2
 Author: The Global Institute of Sustainability
 License: Copyright 2015
 
