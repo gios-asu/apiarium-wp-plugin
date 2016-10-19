@@ -72,7 +72,7 @@ class Apiarium_Full_Kiosk_Test extends \PHPUnit_Framework_TestCase {
 
     $this->assertContains( "<div class='apiarium__green'>", $content );
     $this->assertContains( "<div class='apiarium__weather'>", $content );
-    $this->assertContains( '<h2>Tempe, AZ</h2>', $content );
+    $this->assertContains( '<h2>Tempe,  AZ</h2>', $content );
     $this->assertContains( '<h2>Twitter</h2>', $content );
     $this->assertContains( "<div class='apiarium__weather__forecast'>", $content );
     $this->assertContains( "<div class='apiarium__tweets'", $content );
