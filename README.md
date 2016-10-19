@@ -167,9 +167,14 @@ in between each one.
         * image
         * html
 * limit (Optional) defaults to 15
-    - How many items to show in the slider
+    - How many total items to show in the slider after combining all feeds
 * interval (Optional) defaults to 5 seconds
     - How long to show each slide
+
+##### Flickr RSS feeds
+
+Note that most RSS feeds are not intended to show more than 20 items, so if your looking to show more than 20 items from a Flickr feed you will need to use a third party wrapper around their API. A site that does this for you is [www.degraeve.com/flickr-rss/](http://www.degraeve.com/flickr-rss/). In order for an RSS feed to get parsed correctly as a flickr feed its url should come from `api.flickr.com` or have `/flickr-rss/` in the path.
+
 
 ## Example Page
 
