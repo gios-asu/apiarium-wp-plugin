@@ -10,8 +10,7 @@ use Nectary\Models\Rss_Feed;
  * Parse Flicker feeds
  */
 class Flickr_Rss_Parser {
-  const FLICKR_URL = 'api.flickr.com';
-
+  private $flickr_url_identifiers; // class constants can't be an array
   private $feed_service;
 
   /**
@@ -20,6 +19,7 @@ class Flickr_Rss_Parser {
    */
   public function __construct( Wordpress_Feed_Service $feed_service ) {
     $this->feed_service = $feed_service;
+    $this->flickr_url_identifiers = ['api.flickr.com', '/flickr-rss/']; 
   }
 
   /**
@@ -28,10 +28,12 @@ class Flickr_Rss_Parser {
    */
   public function can_parse( $url ) {
     if ( is_string( $url ) ) {
-      if ( strpos( $url, self::FLICKR_URL ) !== false ) {
-        if ( $feed = $this->get_feed( $url ) ) {
-          if ( $feed instanceof Rss_Feed ) {
-            return true;
+      foreach( $this->flickr_url_identifiers as $possible_url_match ) {
+        if ( strpos( $url, $possible_url_match) !== false ) {
+          if ( $feed = $this->get_feed( $url ) ) {
+            if ( $feed instanceof Rss_Feed ) {
+              return true;
+            }
           }
         }
       }
