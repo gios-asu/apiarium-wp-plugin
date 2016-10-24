@@ -49,7 +49,6 @@
     +function setUpCarousels() {
       $('.carousel').carousel({
         pause: null,
-        interval: 5000,
         keyboard: false
       });
     }();
