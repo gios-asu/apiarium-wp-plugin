@@ -70,6 +70,11 @@ class Flickr_Rss_Parser {
     return $feed_items;
   }
 
+  /** get_image( SimplePie $item ): URL as a String
+   * Look through the description field in an item for an img tag,
+   * returns the first value from the src attribute it finds. 
+   * Also will return the large image size when small is given.
+   */
   private function get_image( $item ) {
     $image_regex = '/<img[^>]+>/i';
     $image_source_regex = '/src="([^"]+)"/i';
@@ -83,6 +88,8 @@ class Flickr_Rss_Parser {
         $image_source = $source_matches[1];
       }
 
+      // see also: https://www.flickr.com/services/api/misc.urls.html
+      // if small photos are given, replace with large
       return str_replace( '_m.jpg', '_b.jpg', $image_source );
     }
 
