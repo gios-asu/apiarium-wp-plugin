@@ -6,7 +6,7 @@ Television Screen and Kiosk WordPress Plugin
 
 ## Requirements
 
-* WordPress 4.1+
+* WordPress 4.7+
 * Composer
 
 ## Installation
