@@ -135,7 +135,7 @@ class Twitter_Shortcodes extends Hook {
             </time>
           </div>
           <div class='apiarium__tweet__name'>
-            <h4>{$feed_item->title}<h4>
+            <h4>{$feed_item->title}</h4>
           </div>
           <div class='apiarium__tweet__description'>
             <p>{$feed_item->description}</p>
