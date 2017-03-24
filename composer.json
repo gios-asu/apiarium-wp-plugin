@@ -22,8 +22,8 @@
         }
     ],
     "require": {
-        "gios-asu/nectary": "^0.1.9",
-        "gios-asu/honeycomb": "^1.0.0"
+        "gios-asu/nectary": "^0.2.2",
+        "gios-asu/honeycomb": "^1.0.4"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*",

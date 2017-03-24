@@ -19,7 +19,7 @@ env:
   # WordPress 4.6
   # @link https://github.com/WordPress/WordPress/tree/4.6-branch
 #  - WP_VERSION=4.6 WP_MULTISITE=0
-  - WP_VERSION=4.6 WP_MULTISITE=1
+  - WP_VERSION=4.7 WP_MULTISITE=1
 
 install:
   - composer install --no-interaction --prefer-source

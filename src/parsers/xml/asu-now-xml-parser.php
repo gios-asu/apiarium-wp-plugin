@@ -62,9 +62,20 @@ class Asu_Now_Xml_Parser {
         $feed_item['id'] = $item->nid;
         $feed_item['title'] = $item->title;
         $feed_item['image'] = $item->hero_image;
-        // $item->body has CDATA, so it won't show up if you var_dump it, you
-        // need to cast it as a string!
-        $feed_item['description'] = (string)$item->body;
+
+        try {
+          // A DOMDocument can be used to sanitize the html we get back so we dont break the page by
+          // printing whatever garbage the feed is giving us. (since its in CDATA)
+          $doc = new \DOMDocument(); 
+          // $item->body has CDATA, so it won't show up if you var_dump it, you
+          // need to cast it as a string!, Also since its most likely an UTF-8 string, you need to tell
+          // the DOMDocument that so it doesn't mess with any upper ascii characters
+          $doc->loadHTML( '<?xml encoding="UTF-8">' . (string)$item->body );
+          $feed_item['description'] = $doc->saveHTML();
+        } catch (Exception $e ) {
+          $feed_item['description'] = '';
+          error_log( 'Malformed HTML for feed item '.$item->nid.' from '.$url );
+        }
         $feed_item['post_date'] = $item->post_date;
 
         $items[] = $feed_item;
